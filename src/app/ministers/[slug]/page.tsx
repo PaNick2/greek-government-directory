@@ -154,74 +154,108 @@ export default async function MinisterDetailPage({ params }: PageProps) {
           {constitutionalEvents.length > 0 && (
             <section>
               <SectionHeading>Συνταγματικά Ζητήματα ({constitutionalEvents.length})</SectionHeading>
-              <div className="space-y-4">
-                {constitutionalEvents.map((ev) => {
+              <div className="space-y-3">
+                {constitutionalEvents.map((ev, idx) => {
                   const badge = ev.constitutionality ? CONSTITUTIONALITY_MAP[ev.constitutionality] : null
                   const sev = ev.severity ? SEVERITY_MAP[ev.severity] : null
+                  const hasDetails = !!(ev.constitutional_notes || ev.constitutional_court_ruling || ev.my_constitutional_assessment || ev.constitutional_references.length > 0 || ev.sources.length > 0)
                   return (
-                    <div key={ev.id} className={`rounded-xl border p-4 ${
-                      ev.constitutionality === 'unconstitutional'
-                        ? 'border-red-200 bg-red-50'
-                        : ev.constitutionality === 'disputed'
-                        ? 'border-amber-200 bg-amber-50'
-                        : 'border-slate-200 bg-white'
-                    }`}>
-                      <div className="flex flex-wrap items-start justify-between gap-2 mb-2">
-                        <div className="flex items-center gap-2 flex-wrap">
-                          <span className="text-xs rounded bg-slate-100 px-2 py-0.5 text-slate-500">
-                            {EVENT_TYPE_LABELS[ev.type] ?? ev.type}
-                          </span>
-                          {badge && (
-                            <span className={`inline-block rounded border px-2 py-0.5 text-xs font-medium ${badge.className}`}>
-                              {badge.label}
+                    <details
+                      key={ev.id}
+                      open={idx === 0 || undefined}
+                      className={`group rounded-xl border ${
+                        ev.constitutionality === 'unconstitutional'
+                          ? 'border-red-200 bg-red-50'
+                          : ev.constitutionality === 'disputed'
+                          ? 'border-amber-200 bg-amber-50'
+                          : 'border-slate-200 bg-white'
+                      }`}
+                    >
+                      <summary className="list-none [&::-webkit-details-marker]:hidden cursor-pointer p-4 flex flex-col gap-2">
+                        {/* Badges row */}
+                        <div className="flex flex-wrap items-start justify-between gap-2">
+                          <div className="flex items-center gap-2 flex-wrap">
+                            <span
+                              title="Τύπος γεγονότος"
+                              className="inline-flex items-center gap-1 text-xs rounded bg-slate-100 px-2 py-0.5 text-slate-500"
+                            >
+                              📌 {EVENT_TYPE_LABELS[ev.type] ?? ev.type}
                             </span>
+                            {badge && (
+                              <span
+                                title="Βαθμός συνταγματικότητας"
+                                className={`inline-flex items-center gap-1 rounded border px-2 py-0.5 text-xs font-medium ${badge.className}`}
+                              >
+                                ⚖️ {badge.label}
+                              </span>
+                            )}
+                            {sev && (
+                              <span
+                                title="Σοβαρότητα"
+                                className="inline-flex items-center gap-1 text-xs text-slate-500"
+                              >
+                                <span className={`h-2 w-2 rounded-full ${sev.dot}`} />
+                                {sev.label}
+                              </span>
+                            )}
+                          </div>
+                          <div className="flex items-center gap-2 flex-shrink-0">
+                            <span className="text-xs text-slate-400">{new Date(ev.date).toLocaleDateString('el-GR')}</span>
+                            {hasDetails && (
+                              <svg
+                                className="h-4 w-4 text-slate-400 transition-transform duration-200 group-open:rotate-180"
+                                fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
+                              >
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                              </svg>
+                            )}
+                          </div>
+                        </div>
+                        {/* Title + description always visible */}
+                        <h3 className="text-sm font-semibold text-slate-900">{ev.title}</h3>
+                        {ev.description && <p className="text-sm text-slate-600 leading-relaxed">{ev.description}</p>}
+                      </summary>
+
+                      {/* Expanded content */}
+                      {hasDetails && (
+                        <div className="px-4 pb-4 space-y-2 border-t border-black/5 pt-3">
+                          {ev.constitutional_notes && (
+                            <div className="rounded-lg border border-amber-200 bg-amber-50 p-3 text-xs text-amber-900">
+                              <p className="font-semibold mb-1">⚖️ Συνταγματική ανάλυση</p>
+                              <p className="leading-relaxed">{ev.constitutional_notes}</p>
+                            </div>
                           )}
-                          {sev && (
-                            <span className="inline-flex items-center gap-1 text-xs text-slate-500">
-                              <span className={`h-2 w-2 rounded-full ${sev.dot}`} />
-                              {sev.label}
-                            </span>
+                          {ev.constitutional_court_ruling && (
+                            <div className="rounded border border-slate-200 bg-slate-50 p-2 text-xs text-slate-600">
+                              <span className="font-semibold text-slate-700">🏛️ Απόφαση δικαστηρίου: </span>{ev.constitutional_court_ruling}
+                            </div>
+                          )}
+                          {ev.my_constitutional_assessment && (
+                            <div className="rounded-lg border border-violet-200 bg-violet-50 p-3 text-xs text-violet-900">
+                              <p className="font-semibold mb-1">📋 Ανεξάρτητη συνταγματική εκτίμηση</p>
+                              <p className="leading-relaxed">{ev.my_constitutional_assessment}</p>
+                            </div>
+                          )}
+                          {ev.constitutional_references.length > 0 && (
+                            <div className="flex flex-wrap gap-1">
+                              {ev.constitutional_references.map((ref) => (
+                                <span key={ref.id} className="rounded border border-slate-200 bg-slate-50 px-2 py-0.5 text-xs text-slate-600" title={ref.description ?? undefined}>
+                                  {ref.article}{ref.constitution_year ? ` (Σ.${ref.constitution_year})` : ''}
+                                </span>
+                              ))}
+                            </div>
+                          )}
+                          {ev.sources.length > 0 && (
+                            <div className="flex flex-wrap gap-2 border-t border-slate-100 pt-2">
+                              {ev.sources.map((s) => (
+                                <a key={s.id} href={s.url} target="_blank" rel="noopener noreferrer"
+                                  className="text-xs text-[#003087] hover:underline">{s.label}</a>
+                              ))}
+                            </div>
                           )}
                         </div>
-                        <span className="text-xs text-slate-400">{new Date(ev.date).toLocaleDateString('el-GR')}</span>
-                      </div>
-                      <h3 className="text-sm font-semibold text-slate-900 mb-1">{ev.title}</h3>
-                      {ev.description && <p className="text-sm text-slate-600 leading-relaxed">{ev.description}</p>}
-                      {ev.constitutional_notes && (
-                        <div className="mt-3 rounded-lg border border-amber-200 bg-amber-50 p-3 text-xs text-amber-900">
-                          <p className="font-semibold mb-1">⚖️ Συνταγματική ανάλυση</p>
-                          <p className="leading-relaxed">{ev.constitutional_notes}</p>
-                        </div>
                       )}
-                      {ev.constitutional_court_ruling && (
-                        <div className="mt-2 rounded border border-slate-200 bg-slate-50 p-2 text-xs text-slate-600">
-                          <span className="font-semibold text-slate-700">🏛️ Απόφαση δικαστηρίου: </span>{ev.constitutional_court_ruling}
-                        </div>
-                      )}
-                      {ev.my_constitutional_assessment && (
-                        <div className="mt-2 rounded-lg border border-violet-200 bg-violet-50 p-3 text-xs text-violet-900">
-                          <p className="font-semibold mb-1">📋 Ανεξάρτητη συνταγματική εκτίμηση</p>
-                          <p className="leading-relaxed">{ev.my_constitutional_assessment}</p>
-                        </div>
-                      )}
-                      {ev.constitutional_references.length > 0 && (
-                        <div className="mt-3 flex flex-wrap gap-1">
-                          {ev.constitutional_references.map((ref) => (
-                            <span key={ref.id} className="rounded border border-slate-200 bg-slate-50 px-2 py-0.5 text-xs text-slate-600" title={ref.description ?? undefined}>
-                              {ref.article}{ref.constitution_year ? ` (Σ.${ref.constitution_year})` : ''}
-                            </span>
-                          ))}
-                        </div>
-                      )}
-                      {ev.sources.length > 0 && (
-                        <div className="mt-2 flex flex-wrap gap-2 border-t border-slate-100 pt-2">
-                          {ev.sources.map((s) => (
-                            <a key={s.id} href={s.url} target="_blank" rel="noopener noreferrer"
-                              className="text-xs text-[#003087] hover:underline">{s.label}</a>
-                          ))}
-                        </div>
-                      )}
-                    </div>
+                    </details>
                   )
                 })}
               </div>
@@ -239,11 +273,11 @@ export default async function MinisterDetailPage({ params }: PageProps) {
                     <div key={ev.id} className="rounded-xl border border-slate-200 bg-white p-4">
                       <div className="flex flex-wrap items-start justify-between gap-2 mb-1">
                         <div className="flex items-center gap-2">
-                          <span className="text-xs rounded bg-slate-100 px-2 py-0.5 text-slate-500">
-                            {EVENT_TYPE_LABELS[ev.type] ?? ev.type}
+                          <span title="Τύπος γεγονότος" className="inline-flex items-center gap-1 text-xs rounded bg-slate-100 px-2 py-0.5 text-slate-500">
+                            📌 {EVENT_TYPE_LABELS[ev.type] ?? ev.type}
                           </span>
                           {sev && (
-                            <span className="inline-flex items-center gap-1 text-xs text-slate-500">
+                            <span title="Σοβαρότητα" className="inline-flex items-center gap-1 text-xs text-slate-500">
                               <span className={`h-2 w-2 rounded-full ${sev.dot}`} />
                               {sev.label}
                             </span>
