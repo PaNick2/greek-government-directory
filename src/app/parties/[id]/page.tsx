@@ -4,6 +4,8 @@ import Link from 'next/link'
 import MinisterCard from '@/components/MinisterCard'
 import type { Metadata } from 'next'
 
+export const revalidate = 3600
+
 interface PageProps {
   params: Promise<{ id: string }>
 }

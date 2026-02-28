@@ -3,6 +3,8 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 
+export const revalidate = 86400
+
 interface PageProps {
   params: Promise<{ id: string }>
 }

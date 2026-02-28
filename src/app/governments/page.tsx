@@ -1,6 +1,8 @@
 import { db } from '@/lib/db'
 import Link from 'next/link'
 
+export const revalidate = 3600
+
 export const metadata = {
   title: 'Κυβερνήσεις | Ελληνικό Κυβερνητικό Αρχείο',
 }
