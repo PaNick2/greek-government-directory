@@ -107,5 +107,3 @@ export default async function PartyDetailPage({ params }: PageProps) {
     </div>
   )
 }
-
-

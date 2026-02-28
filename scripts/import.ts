@@ -144,14 +144,25 @@ async function importMinister(filePath: string): Promise<void> {
     await db.cabinetRole.deleteMany({ where: { minister_id: dbId } })
     for (const cr of data.cabinet_history) {
       const govSlug = slug(cr.government)
+      const isPM =
+        (cr.role_en ?? '').toLowerCase().includes('prime minister') ||
+        (cr.role ?? '').includes('Πρωθυπουργός')
+
       const gov = await db.government.upsert({
         where: { slug: govSlug },
-        update: { name: cr.government, name_en: cr.government_en ?? null },
+        update: {
+          name: cr.government,
+          name_en: cr.government_en ?? null,
+          end_date: parseDate(cr.end_date),
+          ...(isPM ? { prime_minister_id: dbId } : {}),
+        },
         create: {
           slug: govSlug,
           name: cr.government,
           name_en: cr.government_en ?? null,
           start_date: parseDate(cr.start_date) ?? new Date('1900-01-01'),
+          end_date: parseDate(cr.end_date),
+          ...(isPM ? { prime_minister_id: dbId } : {}),
         },
       })
 
@@ -346,6 +357,14 @@ async function importMinister(filePath: string): Promise<void> {
 
   // 15. Events
   if (Array.isArray(data.events)) {
+    // Delete child records first to avoid FK constraint violations
+    const existingEventIds = await db.event
+      .findMany({ where: { minister_id: dbId }, select: { id: true } })
+      .then((rows) => rows.map((r) => r.id))
+    if (existingEventIds.length > 0) {
+      await db.eventSource.deleteMany({ where: { event_id: { in: existingEventIds } } })
+      await db.constitutionalReference.deleteMany({ where: { event_id: { in: existingEventIds } } })
+    }
     await db.event.deleteMany({ where: { minister_id: dbId } })
     for (const e of data.events) {
       const eventSlug = e.id ?? `${ministerId}-${slug(e.title)}-${e.date ?? ''}`
