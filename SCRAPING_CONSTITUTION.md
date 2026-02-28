@@ -1,0 +1,450 @@
+# Οδηγός Συλλογής Δεδομένων Συνταγματικότητας
+# Constitutional Data Collection Guide
+
+> **Target audience:** AI scraping agent / data entry operator
+> **Purpose:** For every `event` in a minister's JSON file, determine whether constitutionality fields apply and fill them in accurately with cited sources.
+
+---
+
+## 1. Πότε να συμπληρωθεί το πεδίο constitutionality
+
+Η συνταγματικότητα καταγράφεται **μόνο** για γεγονότα αυτού του είδους:
+
+| Τύπος γεγονότος (`type`) | Πότε αφορά συνταγματικότητα |
+|---|---|
+| `vote` | Κάθε νόμος/πράξη που ψηφίστηκε στη Βουλή |
+| `legal` | Δικαστικές αποφάσεις, εισαγγελικές παραπομπές |
+| `scandal` | Αν αφορά κατάχρηση εξουσίας, παράνομη παρακολούθηση |
+| `appointment` | Αν ο διορισμός ή πράξη αμφισβητήθηκε νομικά |
+| `statement` | Εξαιρετικά σπάνια — μόνο αν οδήγησε σε νομική διαμάχη |
+| `achievement` | Σπάνια — μόνο αν το επίτευγμα αμφισβητήθηκε νομικά |
+| `financial` | Αν αφορά παράνομη χρηματοδότηση, ΦΕΚ παραβάσεις |
+| `media` | Σχεδόν ποτέ |
+
+**Αν δεν υπάρχει συνταγματική διάσταση, άφησε το πεδίο `constitutionality` κενό (`null`).**
+
+---
+
+## 2. Enum τιμές για `constitutionality`
+
+```
+constitutional       → Κρίθηκε/θεωρείται συνταγματικό από αρμόδιο φορέα
+unconstitutional     → Κρίθηκε αντισυνταγματικό από δικαστήριο ή ανεξάρτητη αρχή
+disputed             → Αμφισβητείται ενεργά — αντικρουόμενες νομικές γνώμες
+pending_ruling       → Εκκρεμεί απόφαση (Συμβούλιο Επικρατείας, Ελεγκτικό Συνέδριο κ.λπ.)
+not_applicable       → Το γεγονός δεν έχει συνταγματική διάσταση
+```
+
+**Κανόνας πρώτης επιλογής:**
+- Επίσημη απόφαση ΣτΕ/Αρείου Πάγου/Ελεγκτικού Συνεδρίου: `constitutional` ή `unconstitutional`
+- Ακαδημαϊκές/πολιτικές διαφωνίες χωρίς απόφαση: `disputed`
+- Αιτήσεις/αναφορές εκκρεμείς: `pending_ruling`
+- Τίποτα από τα παραπάνω: `not_applicable` ή κενό
+
+---
+
+## 3. Enum τιμές για `constitutional_ruling_outcome`
+
+Συμπληρώνεται **μόνο** αν υπάρχει επίσημη απόφαση δικαστηρίου:
+
+```
+upheld      → Το μέτρο κρίθηκε συνταγματικό (επικυρώθηκε)
+struck_down → Το μέτρο κρίθηκε αντισυνταγματικό (ακυρώθηκε)
+referred    → Παραπέμφθηκε σε ανώτερο δικαστήριο ή ΕΔΔΑ
+pending     → Η αίτηση εκκρεμεί
+```
+
+---
+
+## 4. Πηγές που πρέπει να ελέγξεις
+
+Για κάθε γεγονός, ψάξε με αυτή τη σειρά:
+
+1. **[Νομοbase](https://www.nomosbase.gr/)** — αναζήτησε τον τίτλο του νόμου ή τον αριθμό ΦΕΚ
+2. **[ΣτΕ (Συμβούλιο Επικρατείας)](https://www.ste.gr/)** — αποφάσεις ΣτΕ για πράξεις κυβέρνησης
+3. **[Εθνικό Τυπογραφείο / ΦΕΚ](https://www.et.gr/)** — αν ο νόμος εκδόθηκε σε ΦΕΚ
+4. **[ΕΔΔΑ (Ευρωπαϊκό Δικαστήριο Ανθρωπίνων Δικαιωμάτων)](https://hudoc.echr.coe.int/)** — για παραβιάσεις ΕΣΔΑ
+5. **Wikipedia EL/EN** — για επίσημες αποφάσεις που έχουν τεκμηριωθεί
+6. **Βουλή.gr** — πρακτικά συζήτησης νόμου, σχέδια νόμου
+
+---
+
+## 5. Δομή JSON για γεγονότα με constitutional fields
+
+### Βασική δομή γεγονότος (χωρίς constitutional)
+
+```json
+{
+  "id": "slug-περιγραφικο-ονομα",
+  "type": "vote",
+  "date": "YYYY-MM-DD",
+  "title": "Τίτλος στα ελληνικά",
+  "title_en": "Title in English",
+  "description": "Περιγραφή στα ελληνικά.",
+  "description_en": "Description in English.",
+  "severity": "low | medium | high",
+  "resolution": "resolved | ongoing | pending | dismissed",
+  "outcome": "passed | rejected | abstained",
+  "sources": [
+    {
+      "label": "Πηγή (π.χ. Wikipedia, ΦΕΚ, Βουλή.gr)",
+      "url": "https://..."
+    }
+  ]
+}
+```
+
+### Δομή γεγονότος ΜΕ constitutional fields
+
+```json
+{
+  "id": "slug-περιγραφικο-ονομα",
+  "type": "vote",
+  "date": "YYYY-MM-DD",
+  "title": "Τίτλος στα ελληνικά",
+  "title_en": "Title in English",
+  "description": "Περιγραφή στα ελληνικά.",
+  "description_en": "Description in English.",
+  "severity": "low | medium | high",
+  "resolution": "resolved | ongoing | pending | dismissed",
+  "outcome": "passed | rejected | abstained",
+
+  "constitutionality": "constitutional | unconstitutional | disputed | pending_ruling | not_applicable",
+  "constitutional_notes": "Ελεύθερο κείμενο που εξηγεί τη συνταγματική διάσταση. Ποια άρθρα αφορά, ποιος αμφισβήτησε, ποιο δικαστήριο αποφάνθηκε.",
+  "constitutional_court_ruling": "π.χ. ΣτΕ 1234/2021 ή ΕΔΔΑ Mitsotakis v. Greece 2023",
+  "constitutional_ruling_outcome": "upheld | struck_down | referred | pending",
+
+  "constitutional_references": [
+    {
+      "article": "Άρθρο 14 παρ. 1",
+      "constitution_year": 1975,
+      "description": "Ελευθερία του Τύπου",
+      "source": "https://www.hellenicparliament.gr/UserFiles/8c983922.../SYN-withESR.pdf"
+    },
+    {
+      "article": "Άρθρο 9 παρ. 1",
+      "constitution_year": 1975,
+      "description": "Απόρρητο communications",
+      "source": null
+    }
+  ],
+
+  "sources": [
+    {
+      "label": "ΣτΕ απόφαση 1234/2021",
+      "url": "https://www.ste.gr/..."
+    },
+    {
+      "label": "ΦΕΚ Α' 123/2021",
+      "url": "https://www.et.gr/..."
+    }
+  ]
+}
+```
+
+---
+
+## 6. Παραδείγματα ανά κατηγορία
+
+### 6.1 `unconstitutional` — Νόμος που ακυρώθηκε από ΣτΕ
+
+```json
+{
+  "id": "nomos-123-akyrothike-ste",
+  "type": "vote",
+  "date": "2020-05-10",
+  "title": "Νόμος για Μείωση Συντάξεων",
+  "title_en": "Pension Reduction Law",
+  "description": "Νόμος που μείωσε τις κύριες συντάξεις κατά 15%.",
+  "description_en": "Law reducing main pensions by 15%.",
+  "severity": "high",
+  "resolution": "resolved",
+  "outcome": "passed",
+  "constitutionality": "unconstitutional",
+  "constitutional_notes": "Το ΣτΕ με απόφαση Ολομ. 2192/2020 έκρινε ότι η μείωση παραβιάζει το άρθρο 22 παρ. 5 του Συντάγματος (δικαίωμα κοινωνικής ασφάλισης). Ο νόμος εφαρμόστηκε αντισυνταγματικά για 18 μήνες.",
+  "constitutional_court_ruling": "ΣτΕ Ολ. 2192/2020",
+  "constitutional_ruling_outcome": "struck_down",
+  "constitutional_references": [
+    {
+      "article": "Άρθρο 22 παρ. 5",
+      "constitution_year": 1975,
+      "description": "Δικαίωμα κοινωνικής ασφάλισης",
+      "source": null
+    }
+  ],
+  "sources": [
+    {
+      "label": "ΣτΕ Ολ. 2192/2020",
+      "url": "https://www.ste.gr/el/decisions/2192-2020"
+    }
+  ]
+}
+```
+
+### 6.2 `disputed` — Αμφισβητούμενο μέτρο χωρίς τελική απόφαση
+
+```json
+{
+  "id": "nomos-parakolutheiseis-2021",
+  "type": "vote",
+  "date": "2021-03-15",
+  "title": "Νόμος Εθνικής Ασφάλειας — Επέκταση Παρακολουθήσεων",
+  "title_en": "National Security Law — Surveillance Expansion",
+  "description": "Νόμος που επέτρεψε στην ΕΥΠ να λαμβάνει δεδομένα χωρίς δικαστική εντολή υπό ορισμένες προϋποθέσεις.",
+  "description_en": "Law allowing EYP to access data without court order under certain conditions.",
+  "severity": "high",
+  "resolution": "ongoing",
+  "outcome": "passed",
+  "constitutionality": "disputed",
+  "constitutional_notes": "Νομικοί μελετητές και η Αρχή Προστασίας Δεδομένων (ΑΠΔΠΧ) εξέφρασαν σοβαρές αμφιβολίες για την προσβολή του άρθρου 9Α (προσωπικά δεδομένα) και 19 (απόρρητο επικοινωνιών). Εκκρεμούν προσφυγές στο ΣτΕ.",
+  "constitutional_court_ruling": null,
+  "constitutional_ruling_outcome": "pending",
+  "constitutional_references": [
+    {
+      "article": "Άρθρο 9Α",
+      "constitution_year": 1975,
+      "description": "Προστασία προσωπικών δεδομένων",
+      "source": null
+    },
+    {
+      "article": "Άρθρο 19",
+      "constitution_year": 1975,
+      "description": "Απόρρητο επικοινωνιών",
+      "source": null
+    }
+  ],
+  "sources": [
+    {
+      "label": "ΑΠΔΠΧ γνωμοδότηση 2021",
+      "url": "https://www.dpa.gr/..."
+    }
+  ]
+}
+```
+
+### 6.3 `constitutional` — Μέτρο που επικυρώθηκε ρητά
+
+```json
+{
+  "id": "nomos-covid-apagoreusi-2020",
+  "type": "vote",
+  "date": "2020-03-20",
+  "title": "Μέτρα Lockdown COVID-19",
+  "title_en": "COVID-19 Lockdown Measures",
+  "description": "Προεδρικό Διάταγμα που επέβαλε κινητικούς περιορισμούς λόγω πανδημίας.",
+  "description_en": "Presidential Decree imposing movement restrictions due to pandemic.",
+  "severity": "high",
+  "resolution": "resolved",
+  "constitutionality": "constitutional",
+  "constitutional_notes": "Το ΣτΕ με την Ολ. 1/2022 επιβεβαίωσε ότι τα μέτρα ήταν συνταγματικά βάσει του άρθρου 5 παρ. 3 (προστασία υγείας) και άρθρου 25 παρ. 4 (κοινωνική αλληλεγγύη) σε κατάσταση έκτακτης ανάγκης.",
+  "constitutional_court_ruling": "ΣτΕ Ολ. 1/2022",
+  "constitutional_ruling_outcome": "upheld",
+  "constitutional_references": [
+    {
+      "article": "Άρθρο 5 παρ. 3",
+      "constitution_year": 1975,
+      "description": "Δικαίωμα στην υγεία",
+      "source": null
+    },
+    {
+      "article": "Άρθρο 25 παρ. 4",
+      "constitution_year": 1975,
+      "description": "Αρχή κοινωνικής αλληλεγγύης",
+      "source": null
+    }
+  ],
+  "sources": [
+    {
+      "label": "ΣτΕ Ολ. 1/2022",
+      "url": "https://www.ste.gr/..."
+    }
+  ]
+}
+```
+
+### 6.4 `pending_ruling` — Εκκρεμεί απόφαση
+
+```json
+{
+  "id": "nomos-idiotikes-panepistimiakes-2024",
+  "type": "vote",
+  "date": "2024-05-30",
+  "title": "Εισαγωγή Ιδιωτικών Πανεπιστημίων",
+  "title_en": "Introduction of Private Universities",
+  "description": "Νόμος που επέτρεψε την ίδρυση μη κρατικών μη κερδοσκοπικών ΑΕΙ.",
+  "description_en": "Law permitting establishment of non-state, non-profit universities.",
+  "severity": "high",
+  "resolution": "ongoing",
+  "outcome": "passed",
+  "constitutionality": "pending_ruling",
+  "constitutional_notes": "Συνταγματολόγοι αμφισβητούν τη συμβατότητα με το άρθρο 16 παρ. 5 που προβλέπει αποκλειστικά κρατική ανώτατη εκπαίδευση. Κατατέθηκαν αιτήσεις ακυρώσεως στο ΣτΕ. Η υπόθεση επρόκειτο να συζητηθεί εντός 2025.",
+  "constitutional_court_ruling": "Εκκρεμεί — ΣτΕ 2025",
+  "constitutional_ruling_outcome": "pending",
+  "constitutional_references": [
+    {
+      "article": "Άρθρο 16 παρ. 5",
+      "constitution_year": 1975,
+      "description": "Αποκλειστικά κρατική ανώτατη εκπαίδευση",
+      "source": "https://www.hellenicparliament.gr/UserFiles/..."
+    }
+  ],
+  "sources": [
+    {
+      "label": "ΦΕΚ Α' 112/2024",
+      "url": "https://www.et.gr/..."
+    },
+    {
+      "label": "Εφημερίδα Καθημερινή — Αιτήσεις ακύρωσης",
+      "url": "https://www.kathimerini.gr/..."
+    }
+  ]
+}
+```
+
+---
+
+## 7. Βασικά Άρθρα Ελληνικού Συντάγματος 1975 (ως αναθεωρήθηκε)
+
+Αξιοποίησε αυτά ως αφετηρία όταν χρειαστεί να συμπληρώσεις `constitutional_references`:
+
+| Άρθρο | Περιεχόμενο |
+|---|---|
+| Άρθρο 2 | Αξία ανθρώπου |
+| Άρθρο 4 | Ισότητα πολιτών |
+| Άρθρο 5 | Ελεύθερη ανάπτυξη προσωπικότητας, δικαίωμα στη ζωή |
+| Άρθρο 5Α | Πρόσβαση στην πληροφορία |
+| Άρθρο 9 | Απαραβίαστο της κατοικίας |
+| Άρθρο 9Α | Προστασία προσωπικών δεδομένων |
+| Άρθρο 10 | Δικαίωμα αναφοράς/αίτησης |
+| Άρθρο 11 | Ελευθερία συνάθροισης |
+| Άρθρο 12 | Ελευθερία συνεταιρισμού |
+| Άρθρο 13 | Ελευθερία θρησκείας |
+| Άρθρο 14 | Ελευθερία τύπου |
+| Άρθρο 16 | Παιδεία — κρατικό μονοπώλιο ΑΕΙ |
+| Άρθρο 17 | Δικαίωμα στην ιδιοκτησία |
+| Άρθρο 19 | Απόρρητο επικοινωνιών |
+| Άρθρο 20 | Δικαίωμα δικαστικής προστασίας |
+| Άρθρο 21 | Προστασία οικογένειας |
+| Άρθρο 22 | Δικαίωμα εργασίας, κοινωνική ασφάλιση |
+| Άρθρο 24 | Περιβάλλον |
+| Άρθρο 26 | Αρχή διάκρισης εξουσιών |
+| Άρθρο 35 | Υπουργική ευθύνη / προσυπογραφή |
+| Άρθρο 36 | Πράξεις Νομοθετικού Περιεχομένου |
+| Άρθρο 44 | Νομοθετική εξουσιοδότηση |
+| Άρθρο 80 | Προϋπολογισμός |
+| Άρθρο 87 | Ανεξαρτησία δικαστικής εξουσίας |
+| Άρθρο 93 | Αιτιολόγηση δικαστικών αποφάσεων |
+| Άρθρο 100 | Ανώτατο Ειδικό Δικαστήριο |
+
+---
+
+## 8. Σχόλια για τον Agent / Scraper
+
+### Τι να ψάχνεις για κάθε event
+
+```
+1. Αναζήτηση: "[τίτλος νόμου] ΣτΕ" ή "[αριθμός ΦΕΚ] αντισυνταγματικό"
+2. Αναζήτηση: "[τίτλος νόμου] Συμβούλιο Επικρατείας"
+3. Αναζήτηση: "[τίτλος νόμου] ΕΔΔΑ" αν αφορά ανθρώπινα δικαιώματα
+4. Έλεγξε nomosbase.gr για σχόλια νομικών μελετητών
+5. Έλεγξε εφημερίδες νομικού περιεχομένου: Δίκη, Νομική Βιβλιοθήκη
+```
+
+### Κανόνες ποιότητας
+
+- **Ποτέ μη γράφεις** `constitutionality: "unconstitutional"` βασισμένος μόνο σε πολιτική κριτική
+- Το `constitutional_court_ruling` πρέπει να είναι **αριθμός απόφασης** (όχι απλώς "ΣτΕ")
+- Τα `constitutional_references` πρέπει να αναφέρουν **συγκεκριμένες παραγράφους** όταν είναι γνωστές
+- Το `constitutional_notes` γράφεις στα **ελληνικά** — ελεύθερο κείμενο, 1–5 προτάσεις
+- Αν δεν βρίσκεις τίποτα, **μην συμπληρώνεις το πεδίο** (αφησέ το null) — προτιμάται κενό από λάθος
+
+### Template αιτήματος για AI agent
+
+Για να ζητήσεις από AI να συμπληρώσει τα constitutional fields ενός event:
+
+```
+Αναλυτικά το ακόλουθο γεγονός:
+
+Τίτλος: [TITLE]
+Ημερομηνία: [DATE]
+Περιγραφή: [DESCRIPTION]
+
+Ερεύνησε αν υπάρχουν:
+1. Αποφάσεις ΣτΕ για το συγκεκριμένο νόμο/μέτρο
+2. Αποφάσεις Ελεγκτικού Συνεδρίου
+3. Γνωμοδοτήσεις ΕΔΔΑ
+4. Νομικές γνώμες/άρθρα για αντισυνταγματικότητα
+
+Επίστρεψε JSON με τα ακόλουθα πεδία:
+- constitutionality (constitutional/unconstitutional/disputed/pending_ruling/not_applicable)
+- constitutional_notes (ελληνικά, 1-5 προτάσεις)
+- constitutional_court_ruling (αριθμός απόφασης ή null)
+- constitutional_ruling_outcome (upheld/struck_down/referred/pending ή null)
+- constitutional_references (array, κάθε στοιχείο: article, constitution_year, description, source)
+```
+
+---
+
+## 9. Πλήρης δομή JSON minister file (σχετικές ενότητες)
+
+```json
+{
+  "id": "slug-ονομα-υπουργου",
+  "name": "Ονοματεπώνυμο",
+  "name_en": "Full Name in English",
+  ...
+
+  "events": [
+    {
+      "id": "μοναδικό-slug",
+      "type": "vote | scandal | legal | statement | achievement | appointment | financial | media",
+      "date": "YYYY-MM-DD",
+      "title": "Τίτλος ελληνικά",
+      "title_en": "Title in English",
+      "description": "Περιγραφή ελληνικά",
+      "description_en": "Description in English",
+      "severity": "low | medium | high",
+      "resolution": "resolved | ongoing | pending | dismissed",
+      "outcome": "passed | rejected | abstained",
+
+      "constitutionality": "constitutional | unconstitutional | disputed | pending_ruling | not_applicable | null",
+      "constitutional_notes": "Ελεύθερο κείμενο ελληνικά — null αν δεν αφορά",
+      "constitutional_court_ruling": "π.χ. ΣτΕ Ολ. 1234/2020 — null αν δεν υπάρχει",
+      "constitutional_ruling_outcome": "upheld | struck_down | referred | pending | null",
+
+      "constitutional_references": [
+        {
+          "article": "Άρθρο ΧΧ παρ. Υ",
+          "constitution_year": 1975,
+          "description": "Περιεχόμενο άρθρου",
+          "source": "URL ή null"
+        }
+      ],
+
+      "sources": [
+        {
+          "label": "Ετικέτα πηγής",
+          "url": "https://..."
+        }
+      ]
+    }
+  ]
+}
+```
+
+---
+
+## 10. Αντιστοίχηση JSON → Database (Prisma schema)
+
+| JSON field | Database column | Model |
+|---|---|---|
+| `constitutionality` | `constitutionality` | `Event` (`Constitutionality` enum) |
+| `constitutional_notes` | `constitutional_notes` | `Event` (Text) |
+| `constitutional_court_ruling` | `constitutional_court_ruling` | `Event` (String) |
+| `constitutional_ruling_outcome` | `constitutional_ruling_outcome` | `Event` (`ConstitutionalRulingOutcome` enum) |
+| `constitutional_references[].article` | `article` | `ConstitutionalReference` |
+| `constitutional_references[].constitution_year` | `constitution_year` | `ConstitutionalReference` (Int) |
+| `constitutional_references[].description` | `description` | `ConstitutionalReference` (Text) |
+| `constitutional_references[].source` | `source` | `ConstitutionalReference` (String?) |
+
+**Import script path:** `scripts/import.ts` — handles the `constitutional_references` array automatically via nested upsert.
