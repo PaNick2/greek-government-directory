@@ -45,12 +45,16 @@ async function importMinister(filePath: string): Promise<void> {
   // 1. Upsert Party
   let partyId: string | null = null
   if (data.party?.current) {
-    const partySlug = slug(data.party.current)
-    const party = await db.party.upsert({
-      where: { slug: partySlug },
-      update: { name: data.party.current },
-      create: { slug: partySlug, name: data.party.current },
-    })
+    // Find by name first (matches enriched party rows imported from data/raw/parties/)
+    let party = await db.party.findFirst({ where: { name: data.party.current } })
+    if (!party) {
+      const partySlug = slug(data.party.current)
+      party = await db.party.upsert({
+        where: { slug: partySlug },
+        update: { name: data.party.current },
+        create: { slug: partySlug, name: data.party.current },
+      })
+    }
     partyId = party.id
   }
 
@@ -121,12 +125,16 @@ async function importMinister(filePath: string): Promise<void> {
   if (Array.isArray(data.party?.history)) {
     await db.partyTerm.deleteMany({ where: { minister_id: dbId } })
     for (const pt of data.party.history) {
-      const ptPartySlug = slug(pt.party)
-      const ptParty = await db.party.upsert({
-        where: { slug: ptPartySlug },
-        update: { name: pt.party },
-        create: { slug: ptPartySlug, name: pt.party },
-      })
+      // Find by name first to reuse enriched party rows
+      let ptParty = await db.party.findFirst({ where: { name: pt.party } })
+      if (!ptParty) {
+        const ptPartySlug = slug(pt.party)
+        ptParty = await db.party.upsert({
+          where: { slug: ptPartySlug },
+          update: { name: pt.party },
+          create: { slug: ptPartySlug, name: pt.party },
+        })
+      }
       await db.partyTerm.create({
         data: {
           minister_id: dbId,
@@ -491,6 +499,13 @@ async function importParties(): Promise<void> {
 
   console.log(`\n── Importing ${files.length} party file(s) ──`)
 
+  // Build a map of canonical slugs by party name (from JSON files)
+  const canonicalSlugByName = new Map<string, string>()
+  for (const file of files) {
+    const d = JSON.parse(fs.readFileSync(path.join(PARTIES_DIR, file), 'utf-8'))
+    if (d.name && d.id) canonicalSlugByName.set(d.name, d.id)
+  }
+
   for (const file of files) {
     const raw = fs.readFileSync(path.join(PARTIES_DIR, file), 'utf-8')
     const data = JSON.parse(raw)
@@ -533,6 +548,20 @@ async function importParties(): Promise<void> {
         parliamentary_status: data.parliamentary_status ?? null,
       },
     })
+
+    // Merge orphan party rows: if a party with same name but different slug exists
+    // (created by importMinister via slug(name)), reassign its references and delete it
+    const orphan = await db.party.findFirst({
+      where: { name: data.name, NOT: { slug: partySlug } },
+    })
+    if (orphan) {
+      console.log(`  ↳ Merging orphan party slug "${orphan.slug}" into "${partySlug}"`)
+      await db.minister.updateMany({ where: { party_id: orphan.id }, data: { party_id: party.id } })
+      await db.partyTerm.updateMany({ where: { party_id: orphan.id }, data: { party_id: party.id } })
+      await db.electionResult.deleteMany({ where: { party_id: orphan.id } })
+      await db.partyLeader.deleteMany({ where: { party_id: orphan.id } })
+      await db.party.delete({ where: { id: orphan.id } })
+    }
 
     // Upsert ElectionResults
     if (Array.isArray(data.election_results)) {
