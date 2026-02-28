@@ -312,6 +312,212 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
 
 ---
 
+## Ad-hoc Change — Constitutional Assessment Field
+
+> Completed after Milestone 6 (commit `0a7e561`).
+
+The `constitutional_court_ruling` field on `Event` records an official court decision — but court rulings can be politically influenced and are not always a reliable indicator of constitutionality. This change adds a separate, independent field for our own assessment.
+
+### Steps Taken
+
+1. **Schema** — Added `my_constitutional_assessment String? @db.Text` to the `Event` model in `prisma/schema.prisma`
+2. **Migration** — Ran `npx prisma migrate dev --name add_my_constitutional_assessment`
+3. **Import script** — Added `my_constitutional_assessment: e.my_constitutional_assessment ?? null` in the event upsert block in `scripts/import.ts`
+4. **JSON data** — Added `"my_constitutional_assessment": null` to all events in `ministers/kyriakos-mitsotakis-complete.json`
+5. **Minister profile page** — Updated `src/app/ministers/[id]/page.tsx`:
+   - Court ruling displays in a **slate** bordered block (🏛️ Απόφαση δικαστηρίου)
+   - Independent assessment displays in a **violet** bordered block (📋 Ανεξάρτητη συνταγματική εκτίμηση) when non-null
+
+### Data Entry Workflow
+
+To fill in an assessment for an event:
+1. Open the minister's JSON file (e.g. `ministers/kyriakos-mitsotakis-complete.json`)
+2. Set `"my_constitutional_assessment"` to a non-null string on the relevant event
+3. Run `npm run import`
+4. The violet block will now render on the profile page
+
+---
+
+## Milestone 7 — Party Enrichment
+
+Parties currently store only `name`, `name_en`, `color`, and `slug`. This milestone adds biographical, historical, electoral, and leadership data for each party.
+
+### Step 1: Add New Enums to the Schema
+
+Add to `prisma/schema.prisma`:
+
+```prisma
+enum PoliticalSpectrum {
+  far_left
+  left
+  centre_left
+  centre
+  centre_right
+  right
+  far_right
+}
+
+enum ParliamentaryStatus {
+  governing
+  opposition
+  junior_coalition_partner
+  extra_parliamentary
+  dissolved
+}
+```
+
+### Step 2: Expand the Party Model
+
+Replace the current `Party` model with:
+
+```prisma
+model Party {
+  id                   String               @id @default(cuid())
+  slug                 String               @unique
+  name                 String
+  name_en              String?
+  abbreviation         String?
+  abbreviation_en      String?
+  color                String?
+  founded              DateTime?            @db.Date
+  dissolved            DateTime?            @db.Date
+  bio                  String?              @db.Text
+  bio_en               String?              @db.Text
+  ideology             String?
+  ideology_en          String?
+  political_spectrum   PoliticalSpectrum?
+  parliamentary_status ParliamentaryStatus?
+  ministers            Minister[]
+  partyTerms           PartyTerm[]
+  electionResults      ElectionResult[]
+  leaders              PartyLeader[]
+  createdAt            DateTime             @default(now())
+  updatedAt            DateTime             @updatedAt
+}
+```
+
+### Step 3: Add the ElectionResult Model
+
+```prisma
+model ElectionResult {
+  id               String   @id @default(cuid())
+  party_id         String
+  party            Party    @relation(fields: [party_id], references: [id], onDelete: Cascade)
+  election_date    DateTime @db.Date
+  vote_percentage  Float?
+  seats            Int?
+  total_seats      Int?
+  formed_government Boolean @default(false)
+  notes            String?  @db.Text
+  source           String?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+```
+
+### Step 4: Add the PartyLeader Model
+
+```prisma
+model PartyLeader {
+  id          String    @id @default(cuid())
+  party_id    String
+  party       Party     @relation(fields: [party_id], references: [id], onDelete: Cascade)
+  name        String
+  minister_id String?
+  minister    Minister? @relation(fields: [minister_id], references: [id], onDelete: SetNull)
+  from        DateTime  @db.Date
+  to          DateTime? @db.Date
+  notes       String?   @db.Text
+  source      String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+```
+
+Also add `partyLeaderships PartyLeader[]` to the `Minister` model.
+
+### Step 5: Run the Migration
+
+```bash
+npx prisma migrate dev --name party-enrichment
+```
+
+### Step 6: Create Party JSON Files
+
+Create one JSON file per party under `data/raw/parties/`. Example — `data/raw/parties/nd.json`:
+
+```json
+{
+  "id": "nd",
+  "name": "Νέα Δημοκρατία",
+  "name_en": "New Democracy",
+  "abbreviation": "ΝΔ",
+  "abbreviation_en": "ND",
+  "color": "#0066CC",
+  "founded": "1974-10-04",
+  "dissolved": null,
+  "political_spectrum": "centre_right",
+  "parliamentary_status": "governing",
+  "ideology": "Κεντροδεξιά, Φιλελευθερισμός, Συντηρητισμός",
+  "ideology_en": "Centre-right, Liberalism, Conservatism",
+  "bio": "Η Νέα Δημοκρατία ιδρύθηκε το 1974 από τον Κωνσταντίνο Καραμανλή...",
+  "bio_en": "New Democracy was founded in 1974 by Konstantinos Karamanlis...",
+  "election_results": [
+    {
+      "election_date": "2023-06-25",
+      "vote_percentage": 40.56,
+      "seats": 158,
+      "total_seats": 300,
+      "formed_government": true,
+      "notes": "Αυτοδυναμία με ενισχυμένη αναλογική",
+      "source": "https://ekloges.ypes.gr"
+    }
+  ],
+  "leaders": [
+    {
+      "name": "Κυριάκος Μητσοτάκης",
+      "minister_id": "kyriakos-mitsotakis",
+      "from": "2016-01-11",
+      "to": null,
+      "source": "https://nd.gr"
+    }
+  ]
+}
+```
+
+### Step 7: Add `importParties()` to the Import Script
+
+Add a new function in `scripts/import.ts` that:
+1. Reads all `*.json` files from `data/raw/parties/`
+2. Upserts each `Party` with all new fields
+3. Upserts each `ElectionResult` (keyed on `party_id + election_date`)
+4. Upserts each `PartyLeader` (keyed on `party_id + name + from`)
+
+Call it from the `main()` function after `importMinister()` calls.
+
+### Step 8: Update `/parties` listing page
+
+Update `src/app/parties/page.tsx` to display on each card:
+- Abbreviation next to the name
+- Political spectrum badge (colour-coded)
+- Parliamentary status badge (governing / opposition / etc.)
+- Founded year
+- Member count (already present)
+
+### Step 9: Update `/parties/[id]` detail page
+
+Update `src/app/parties/[id]/page.tsx` to display:
+- **Bio section** — full biography text in Greek (with English toggle if `bio_en` present)
+- **Ideology & spectrum** — ideology string + spectrum badge
+- **Parliamentary status** badge in the hero
+- **Leadership timeline** — ordered list of leaders with dates and optional minister profile link
+- **Election results table** — date, vote %, seats / total seats, formed-government indicator, source link
+- Keep the existing **Members grid** section
+
+**Milestone 7 is done when:** All party pages show rich historical, electoral, and leadership data driven by JSON files.
+
+---
+
 ## Quick Reference
 
 ### Useful Commands
@@ -319,30 +525,55 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
 | Command | What it does |
 |---|---|
 | `npm run dev` | Start local development server |
-| `npx prisma studio` | Browse your database locally |
-| `npx prisma migrate dev` | Apply schema changes to the database |
-| `npx prisma generate` | Regenerate Prisma client after schema changes |
-| `npx ts-node scripts/import.ts` | Run the data import script |
+| `npm run import` | Run the data import script (`npx tsx scripts/import.ts`) |
+| `npm run build` | Production build (confirms no type / compile errors) |
+| `npm run db:migrate` | Apply pending schema migrations (`npx prisma migrate dev`) |
+| `npm run db:generate` | Regenerate the Prisma client after schema changes |
+| `npm run db:studio` | Browse the database locally in Prisma Studio |
 
 ### Project Structure
 
 ```
 /
 ├── prisma/
-│   └── schema.prisma
+│   ├── schema.prisma
+│   └── migrations/
+├── data/
+│   └── raw/
+│       ├── ministers/            ← one JSON file per minister
+│       └── parties/              ← one JSON file per party (Milestone 7+)
+├── ministers/                    ← legacy location for minister JSON files
 ├── src/
 │   ├── app/
-│   │   ├── ministers/[id]/
-│   │   ├── governments/[id]/
-│   │   ├── ministries/[id]/
-│   │   ├── parties/[id]/
-│   │   └── api/search/
+│   │   ├── page.tsx              ← homepage
+│   │   ├── sitemap.ts
+│   │   ├── not-found.tsx
+│   │   ├── ministers/
+│   │   │   ├── page.tsx
+│   │   │   └── [id]/page.tsx
+│   │   ├── governments/
+│   │   │   ├── page.tsx
+│   │   │   └── [id]/page.tsx
+│   │   ├── ministries/
+│   │   │   ├── page.tsx
+│   │   │   └── [id]/page.tsx
+│   │   ├── parties/
+│   │   │   ├── page.tsx
+│   │   │   └── [id]/page.tsx
+│   │   └── api/search/route.ts
 │   ├── components/
+│   │   ├── MinisterCard.tsx
+│   │   ├── SearchBar.tsx
+│   │   └── Skeleton.tsx
 │   ├── lib/
-│   │   └── db.ts
-│   └── types/
+│   │   └── db.ts                 ← Prisma client singleton
+│   └── generated/
+│       └── prisma/               ← auto-generated Prisma client output
 ├── scripts/
-│   └── import.ts
-└── data/
-    └── raw/
+│   └── import.ts                 ← data import/upsert script
+├── .env                          ← local env vars (git-ignored)
+├── .env.example                  ← env var template (committed)
+├── CONTRIBUTING.md
+├── DEVELOPMENT.md
+└── AGENT_CONTEXT.md              ← agent/LLM context file
 ```
