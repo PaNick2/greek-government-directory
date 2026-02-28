@@ -7,6 +7,7 @@ const navLinks = [
   { href: '/', label: 'Αρχική' },
   { href: '/ministers', label: 'Υπουργοί' },
   { href: '/governments', label: 'Κυβερνήσεις' },
+  { href: '/ministries', label: 'Υπουργεία' },
   { href: '/parties', label: 'Κόμματα' },
 ]
 

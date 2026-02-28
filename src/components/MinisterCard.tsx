@@ -8,6 +8,7 @@ interface MinisterCardProps {
   partyName?: string | null
   partyColor?: string | null
   isActive?: boolean
+  eventCount?: number
 }
 
 function getInitials(name: string): string {
@@ -27,6 +28,7 @@ export default function MinisterCard({
   partyName,
   partyColor,
   isActive,
+  eventCount,
 }: MinisterCardProps) {
   const initials = getInitials(name)
   const avatarBg = partyColor ?? '#003087'
@@ -69,17 +71,20 @@ export default function MinisterCard({
         </p>
       )}
 
-      {/* Party badge */}
-      {partyName && (
-        <div className="mt-3 pt-3 border-t border-slate-100">
+      {/* Party badge + event count */}
+      <div className="mt-3 pt-3 border-t border-slate-100 flex items-center justify-between">
+        {partyName ? (
           <span
             className="inline-block rounded px-2 py-0.5 text-xs font-medium text-white"
             style={{ backgroundColor: avatarBg }}
           >
             {partyName}
           </span>
-        </div>
-      )}
+        ) : <span />}
+        {eventCount !== undefined && (
+          <span className="text-xs text-slate-400">{eventCount} γεγονότα</span>
+        )}
+      </div>
     </Link>
   )
 }

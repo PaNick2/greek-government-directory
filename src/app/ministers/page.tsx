@@ -1,9 +1,10 @@
 import { db } from '@/lib/db'
 import MinisterCard from '@/components/MinisterCard'
 import SearchBar from '@/components/SearchBar'
+import FilterBar from '@/components/FilterBar'
 
 interface PageProps {
-  searchParams: Promise<{ q?: string; status?: string; party?: string }>
+  searchParams: Promise<{ q?: string; status?: string; party?: string; gov?: string; sort?: string }>
 }
 
 export const metadata = {
@@ -11,7 +12,7 @@ export const metadata = {
 }
 
 export default async function MinistersPage({ searchParams }: PageProps) {
-  const { q, status, party: partyId } = await searchParams
+  const { q, status, party: partyId, gov: govId, sort } = await searchParams
 
   const ministers = await db.minister.findMany({
     where: {
@@ -19,17 +20,20 @@ export default async function MinistersPage({ searchParams }: PageProps) {
         q
           ? {
               OR: [
-                { name: { contains: q } },
-                { name_en: { contains: q } },
+                { name: { contains: q, mode: 'insensitive' } },
+                { name_en: { contains: q, mode: 'insensitive' } },
               ],
             }
           : {},
         partyId
           ? { partyTerms: { some: { party_id: partyId } } }
           : {},
+        govId
+          ? { cabinetRoles: { some: { government_id: govId } } }
+          : {},
       ],
     },
-    orderBy: { name: 'asc' },
+    orderBy: sort === 'events' ? undefined : { name: 'asc' },
     include: {
       partyTerms: {
         orderBy: { from: 'desc' },
@@ -41,15 +45,16 @@ export default async function MinistersPage({ searchParams }: PageProps) {
         take: 1,
         include: { government: true },
       },
+      _count: { select: { events: true } },
     },
   })
 
-  const parties = await db.party.findMany({
-    orderBy: { name: 'asc' },
-    select: { id: true, name: true },
-  })
+  const [parties, governments] = await Promise.all([
+    db.party.findMany({ orderBy: { name: 'asc' }, select: { id: true, name: true } }),
+    db.government.findMany({ orderBy: { start_date: 'desc' }, select: { id: true, name: true } }),
+  ])
 
-  // Derive active status: has a cabinet role with no end_date
+  // Derive active status
   const enriched = ministers.map((m) => ({
     ...m,
     isActive: m.cabinetRoles.some((r) => !r.end_date),
@@ -57,13 +62,18 @@ export default async function MinistersPage({ searchParams }: PageProps) {
 
   const activeCount = enriched.filter((m) => m.isActive).length
 
-  // Filter by status after query (no isCurrentlyServing column)
-  const filtered =
+  // Filter by status
+  const statusFiltered =
     status === 'active'
       ? enriched.filter((m) => m.isActive)
       : status === 'past'
         ? enriched.filter((m) => !m.isActive)
         : enriched
+
+  // Sort
+  const filtered = sort === 'events'
+    ? [...statusFiltered].sort((a, b) => (b._count?.events ?? 0) - (a._count?.events ?? 0))
+    : statusFiltered
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
@@ -76,57 +86,19 @@ export default async function MinistersPage({ searchParams }: PageProps) {
         </p>
       </div>
 
-      {/* Filters row */}
-      <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center">
-        <div className="flex-1 max-w-sm">
-          <SearchBar placeholder="Φίλτρο ονόματος..." />
-        </div>
-
-        {/* Status tabs */}
-        <div className="flex items-center gap-1 rounded-lg border border-slate-200 bg-white p-1 text-sm">
-          {[
-            { value: '', label: 'Όλοι' },
-            { value: 'active', label: 'Ενεργοί' },
-            { value: 'past', label: 'Πρώην' },
-          ].map(({ value, label }) => (
-            <a
-              key={value}
-              href={`/ministers?${new URLSearchParams({
-                ...(q ? { q } : {}),
-                ...(value ? { status: value } : {}),
-                ...(partyId ? { party: partyId } : {}),
-              })}`}
-              className={`rounded px-3 py-1.5 font-medium transition ${
-                (status ?? '') === value
-                  ? 'bg-[#003087] text-white'
-                  : 'text-slate-600 hover:bg-slate-100'
-              }`}
-            >
-              {label}
-            </a>
-          ))}
-        </div>
-
-        {/* Party filter */}
-        {parties.length > 0 && (
-          <form method="get" action="/ministers">
-            {q && <input type="hidden" name="q" value={q} />}
-            {status && <input type="hidden" name="status" value={status} />}
-            <select
-              name="party"
-              defaultValue={partyId ?? ''}
-              className="rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-700 focus:border-[#003087] outline-none"
-            >
-              <option value="">Όλα τα κόμματα</option>
-              {parties.map((p) => (
-                <option key={p.id} value={p.id}>
-                  {p.name}
-                </option>
-              ))}
-            </select>
-          </form>
-        )}
+      {/* Search + Filters */}
+      <div className="mb-4 max-w-sm">
+        <SearchBar placeholder="Φίλτρο ονόματος..." />
       </div>
+      <FilterBar
+        parties={parties}
+        governments={governments}
+        currentParty={partyId}
+        currentGov={govId}
+        currentStatus={status}
+        currentSort={sort}
+        q={q}
+      />
 
       {/* Grid */}
       {filtered.length === 0 ? (
@@ -156,6 +128,7 @@ export default async function MinistersPage({ searchParams }: PageProps) {
                 partyName={lastParty?.name ?? null}
                 partyColor={lastParty?.color ?? null}
                 isActive={m.isActive}
+                eventCount={sort === 'events' ? (m._count?.events ?? 0) : undefined}
               />
             )
           })}
