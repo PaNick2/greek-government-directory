@@ -1,7 +1,7 @@
 import Link from 'next/link'
 
 interface MinisterCardProps {
-  id: string
+  slug: string
   name: string
   nameEn?: string | null
   currentRole?: string | null
@@ -21,7 +21,7 @@ function getInitials(name: string): string {
 }
 
 export default function MinisterCard({
-  id,
+  slug,
   name,
   nameEn,
   currentRole,
@@ -35,7 +35,7 @@ export default function MinisterCard({
 
   return (
     <Link
-      href={`/ministers/${id}`}
+      href={`/ministers/${slug}`}
       className="group flex flex-col rounded-xl border border-slate-200 bg-white p-4 shadow-sm transition hover:border-[#003087] hover:shadow-md"
     >
       {/* Avatar */}

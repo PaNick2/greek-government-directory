@@ -20,6 +20,7 @@ export async function GET(req: NextRequest) {
       take: 10,
       select: {
         id: true,
+        slug: true,
         name: true,
         name_en: true,
         cabinetRoles: {
@@ -42,7 +43,7 @@ export async function GET(req: NextRequest) {
     })
 
     const results = found.map((m) => ({
-      id: m.id,
+      slug: m.slug,
       name: m.name,
       name_en: m.name_en,
       isActive: m.cabinetRoles.some((r) => !r.end_date),

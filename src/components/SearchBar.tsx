@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 
 interface SearchResult {
-  id: string
+  slug: string
   name: string
   name_en: string | null
   currentRole: string | null
@@ -152,8 +152,8 @@ export default function SearchBar({
         <div className="absolute left-0 right-0 top-full z-50 mt-1 max-h-80 overflow-auto rounded-xl border border-slate-200 bg-white shadow-lg scrollbar-hide">
           {results.map((r) => (
             <Link
-              key={r.id}
-              href={`/ministers/${r.id}`}
+              key={r.slug}
+              href={`/ministers/${r.slug}`}
               onClick={() => {
                 setOpen(false)
                 setQuery('')

@@ -303,7 +303,7 @@ export default async function PartyDetailPage({ params }: PageProps) {
               return (
                 <MinisterCard
                   key={m.id}
-                  id={m.slug}
+                  slug={m.slug}
                   name={m.name}
                   nameEn={m.name_en}
                   currentRole={

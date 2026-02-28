@@ -6,12 +6,17 @@ import type { Metadata } from 'next'
 export const revalidate = 86400
 
 interface PageProps {
-  params: Promise<{ id: string }>
+  params: Promise<{ slug: string }>
+}
+
+export async function generateStaticParams() {
+  const ministers = await db.minister.findMany({ select: { slug: true } })
+  return ministers.map((m) => ({ slug: m.slug }))
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { id } = await params
-  const minister = await db.minister.findUnique({ where: { id }, select: { name: true } })
+  const { slug } = await params
+  const minister = await db.minister.findUnique({ where: { slug }, select: { name: true } })
   return { title: minister ? `${minister.name} | ΕΚΑ` : 'Υπουργός | ΕΚΑ' }
 }
 
@@ -39,10 +44,10 @@ function SectionHeading({ children }: { children: React.ReactNode }) {
 }
 
 export default async function MinisterDetailPage({ params }: PageProps) {
-  const { id } = await params
+  const { slug } = await params
 
   const minister = await db.minister.findUnique({
-    where: { id },
+    where: { slug },
     include: {
       partyTerms: { orderBy: { from: 'asc' }, include: { party: true } },
       cabinetRoles: {
@@ -65,7 +70,7 @@ export default async function MinisterDetailPage({ params }: PageProps) {
       contradictions: { orderBy: { past_date: 'desc' } },
       assetDeclarations: { orderBy: { year: 'desc' } },
       connectionsFrom: {
-        include: { to_minister: { select: { id: true, name: true } } },
+        include: { to_minister: { select: { id: true, slug: true, name: true } } },
       },
     },
   })
@@ -122,7 +127,7 @@ export default async function MinisterDetailPage({ params }: PageProps) {
             {minister.born && <span>Γέννηση: {new Date(minister.born).toLocaleDateString('el-GR')}</span>}
             {minister.birthplace && <span>{minister.birthplace}</span>}
             {currentParty && (
-              <span>Κόμμα: <Link href={`/parties/${currentParty.party.id}`} className="font-medium text-[#003087] hover:underline">{currentParty.party.name}</Link></span>
+              <span>Κόμμα: <Link href={`/parties/${currentParty.party.slug}`} className="font-medium text-[#003087] hover:underline">{currentParty.party.name}</Link></span>
             )}
             {minister.parliamentaryTerms.length > 0 && (
               <span>{minister.parliamentaryTerms.length} βουλευτικές θητείες</span>
@@ -392,7 +397,7 @@ export default async function MinisterDetailPage({ params }: PageProps) {
                   <div key={pt.id} className="flex items-center gap-3">
                     <div className="h-2.5 w-2.5 flex-shrink-0 rounded-full" style={{ backgroundColor: pt.party.color ?? '#003087' }} />
                     <div className="flex-1 min-w-0">
-                      <Link href={`/parties/${pt.party.id}`} className="text-xs font-medium text-slate-800 hover:text-[#003087] truncate block">{pt.party.name}</Link>
+                      <Link href={`/parties/${pt.party.slug}`} className="text-xs font-medium text-slate-800 hover:text-[#003087] truncate block">{pt.party.name}</Link>
                       <p className="text-xs text-slate-400">
                         {pt.from ? new Date(pt.from).toLocaleDateString('el-GR', { year: 'numeric' }) : ''}
                         {pt.to ? ` → ${new Date(pt.to).toLocaleDateString('el-GR', { year: 'numeric' })}` : ' → σήμερα'}
@@ -499,7 +504,7 @@ export default async function MinisterDetailPage({ params }: PageProps) {
                 {minister.connectionsFrom.map((c) => (
                   <div key={c.id} className="flex items-center gap-2 text-xs">
                     <span className="text-slate-400 capitalize">{c.relation_type.replace('_', ' ')}</span>
-                    <Link href={`/ministers/${c.to_minister.id}`} className="font-medium text-[#003087] hover:underline">
+                    <Link href={`/ministers/${c.to_minister.slug}`} className="font-medium text-[#003087] hover:underline">
                       {c.to_minister.name}
                     </Link>
                   </div>

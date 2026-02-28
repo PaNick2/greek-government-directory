@@ -21,11 +21,11 @@ export default async function GovernmentDetailPage({ params }: PageProps) {
   const gov = await db.government.findUnique({
     where: { id },
     include: {
-      prime_minister: { select: { id: true, name: true } },
+      prime_minister: { select: { id: true, slug: true, name: true } },
       cabinetRoles: {
         orderBy: [{ ministry_id: 'asc' }, { start_date: 'asc' }],
         include: {
-          minister: { select: { id: true, name: true } },
+          minister: { select: { id: true, slug: true, name: true } },
           ministry: { select: { id: true, name: true } },
         },
       },
@@ -74,7 +74,7 @@ export default async function GovernmentDetailPage({ params }: PageProps) {
         {gov.prime_minister && (
           <p className="mt-2 text-base text-slate-700">
             Πρωθυπουργός:{' '}
-            <Link href={`/ministers/${gov.prime_minister.id}`} className="font-medium text-[#003087] hover:underline">
+            <Link href={`/ministers/${gov.prime_minister.slug}`} className="font-medium text-[#003087] hover:underline">
               {gov.prime_minister.name}
             </Link>
           </p>
@@ -121,7 +121,7 @@ export default async function GovernmentDetailPage({ params }: PageProps) {
                         {r.end_date ? ` → ${new Date(r.end_date).toLocaleDateString('el-GR', { month: 'short', year: 'numeric' })}` : ' → Σήμερα'}
                       </span>
                       {r.minister && (
-                        <Link href={`/ministers/${r.minister.id}`}
+                        <Link href={`/ministers/${r.minister.slug}`}
                           className="text-sm font-medium text-[#003087] hover:underline whitespace-nowrap">
                           {r.minister.name}
                         </Link>

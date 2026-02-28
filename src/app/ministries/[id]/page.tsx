@@ -24,7 +24,7 @@ export default async function MinistryDetailPage({ params }: PageProps) {
       cabinetRoles: {
         orderBy: { start_date: 'asc' },
         include: {
-          minister: { select: { id: true, name: true } },
+          minister: { select: { id: true, slug: true, name: true } },
           government: { select: { id: true, name: true } },
         },
       },
@@ -102,7 +102,7 @@ export default async function MinistryDetailPage({ params }: PageProps) {
                     <div>
                       {r.minister ? (
                         <Link
-                          href={`/ministers/${r.minister.id}`}
+                          href={`/ministers/${r.minister.slug}`}
                           className="text-sm font-medium text-slate-900 hover:text-[#003087] transition"
                         >
                           {r.minister.name}

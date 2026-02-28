@@ -117,7 +117,7 @@ export default async function MinistersPage({ searchParams }: PageProps) {
             return (
               <MinisterCard
                 key={m.id}
-                id={m.id}
+                slug={m.slug}
                 name={m.name}
                 nameEn={m.name_en}
                 currentRole={
