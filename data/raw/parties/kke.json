@@ -1,0 +1,43 @@
+{
+  "id": "kke",
+  "name": "Κομμουνιστικό Κόμμα Ελλάδας",
+  "name_en": "Communist Party of Greece",
+  "abbreviation": "ΚΚΕ",
+  "abbreviation_en": "KKE",
+  "color": "#EE334E",
+  "founded": "1918-11-04",
+  "dissolved": null,
+  "political_spectrum": "far_left",
+  "parliamentary_status": "opposition",
+  "ideology": "Κομμουνισμός, μαρξισμό-λενινισμό, αντιιμπεριαλισμό",
+  "ideology_en": "Communism, Marxism-Leninism, anti-imperialism",
+  "bio": "Το ΚΚΕ ιδρύθηκε το 1918 και είναι ένα από τα παλαιότερα κόμματα της Ελλάδας. Παίζει περιορισμένο ρόλο στη σύγχρονη ελληνική πολιτική με σταθερή εκλογική αποδοχή γύρω στο 5-6%. Το κόμμα εξασκεί κριτική στην Ευρωπαϊκή Ένωση και υποστηρίζει την κατάρρευση του καπιταλισμού. Συμμετέχει σε αριστερές ενώσεις σε ευρωπαϊκό επίπεδο.",
+  "bio_en": "The KKE was founded in 1918 and is one of the oldest parties in Greece. It plays a limited role in contemporary Greek politics with stable electoral support around 5-6%. The party criticizes the European Union and advocates for the collapse of capitalism. It participates in left-wing alliances at the European level.",
+  "election_results": [
+    {
+      "election_date": "2023-06-25",
+      "vote_percentage": 5.31,
+      "seats": 14,
+      "total_seats": 300,
+      "formed_government": false,
+      "source": "https://en.wikipedia.org/wiki/2023_Greek_legislative_election"
+    },
+    {
+      "election_date": "2019-07-07",
+      "vote_percentage": 5.3,
+      "seats": 15,
+      "total_seats": 300,
+      "formed_government": false,
+      "source": "https://en.wikipedia.org/wiki/2019_Greek_legislative_election"
+    }
+  ],
+  "leaders": [
+    {
+      "name": "Δημήτρης Κουτσούμπας",
+      "minister_id": null,
+      "from": "2013-02-03",
+      "to": null,
+      "source": "https://en.wikipedia.org/wiki/Dimitris_Koutsoumbas"
+    }
+  ]
+}

@@ -476,43 +476,201 @@ async function resolveConnections(): Promise<void> {
   }
 }
 
+async function importParties(): Promise<void> {
+  const PARTIES_DIR = path.join(process.cwd(), 'data', 'raw', 'parties')
+  if (!fs.existsSync(PARTIES_DIR)) {
+    console.log('No data/raw/parties/ directory found, skipping party import.')
+    return
+  }
+
+  const files = fs.readdirSync(PARTIES_DIR).filter((f) => f.endsWith('.json'))
+  if (files.length === 0) {
+    console.log('No party JSON files found.')
+    return
+  }
+
+  console.log(`\n── Importing ${files.length} party file(s) ──`)
+
+  for (const file of files) {
+    const raw = fs.readFileSync(path.join(PARTIES_DIR, file), 'utf-8')
+    const data = JSON.parse(raw)
+    const partySlug = data.id ?? slug(data.name)
+
+    console.log(`\n→ Party: ${data.name ?? file}`)
+
+    // Upsert Party core fields
+    const party = await db.party.upsert({
+      where: { slug: partySlug },
+      update: {
+        name: data.name,
+        name_en: data.name_en ?? null,
+        abbreviation: data.abbreviation ?? null,
+        abbreviation_en: data.abbreviation_en ?? null,
+        color: data.color ?? null,
+        founded: parseDate(data.founded),
+        dissolved: parseDate(data.dissolved),
+        bio: data.bio ?? null,
+        bio_en: data.bio_en ?? null,
+        ideology: data.ideology ?? null,
+        ideology_en: data.ideology_en ?? null,
+        political_spectrum: data.political_spectrum ?? null,
+        parliamentary_status: data.parliamentary_status ?? null,
+      },
+      create: {
+        slug: partySlug,
+        name: data.name,
+        name_en: data.name_en ?? null,
+        abbreviation: data.abbreviation ?? null,
+        abbreviation_en: data.abbreviation_en ?? null,
+        color: data.color ?? null,
+        founded: parseDate(data.founded),
+        dissolved: parseDate(data.dissolved),
+        bio: data.bio ?? null,
+        bio_en: data.bio_en ?? null,
+        ideology: data.ideology ?? null,
+        ideology_en: data.ideology_en ?? null,
+        political_spectrum: data.political_spectrum ?? null,
+        parliamentary_status: data.parliamentary_status ?? null,
+      },
+    })
+
+    // Upsert ElectionResults
+    if (Array.isArray(data.election_results)) {
+      for (const er of data.election_results) {
+        const electionDate = parseDate(er.election_date)
+        if (!electionDate) {
+          console.warn(`  ⚠ Skipping election result with invalid date: ${er.election_date}`)
+          continue
+        }
+        await db.electionResult.upsert({
+          where: { party_id_election_date: { party_id: party.id, election_date: electionDate } },
+          update: {
+            vote_percentage: er.vote_percentage ?? null,
+            seats: er.seats ?? null,
+            total_seats: er.total_seats ?? null,
+            formed_government: er.formed_government ?? false,
+            notes: er.notes ?? null,
+            source: er.source ?? null,
+          },
+          create: {
+            party_id: party.id,
+            election_date: electionDate,
+            vote_percentage: er.vote_percentage ?? null,
+            seats: er.seats ?? null,
+            total_seats: er.total_seats ?? null,
+            formed_government: er.formed_government ?? false,
+            notes: er.notes ?? null,
+            source: er.source ?? null,
+          },
+        })
+      }
+      console.log(`  ✓ ${data.election_results.length} election result(s)`)
+    }
+
+    // Upsert PartyLeaders
+    if (Array.isArray(data.leaders)) {
+      for (const leader of data.leaders) {
+        const fromDate = parseDate(leader.from)
+        if (!fromDate) {
+          console.warn(`  ⚠ Skipping leader with invalid from date: ${leader.name}`)
+          continue
+        }
+        // Resolve optional minister FK
+        let ministerId: string | null = null
+        if (leader.minister_id) {
+          const m = await db.minister.findUnique({ where: { slug: leader.minister_id }, select: { id: true } })
+          ministerId = m?.id ?? null
+          if (!m) console.warn(`  ⚠ Leader minister_id not found: ${leader.minister_id}`)
+        }
+        await db.partyLeader.upsert({
+          where: { party_id_name_from: { party_id: party.id, name: leader.name, from: fromDate } },
+          update: {
+            minister_id: ministerId,
+            to: parseDate(leader.to),
+            notes: leader.notes ?? null,
+            source: leader.source ?? null,
+          },
+          create: {
+            party_id: party.id,
+            name: leader.name,
+            minister_id: ministerId,
+            from: fromDate,
+            to: parseDate(leader.to),
+            notes: leader.notes ?? null,
+            source: leader.source ?? null,
+          },
+        })
+      }
+      console.log(`  ✓ ${data.leaders.length} leader(s)`)
+    }
+  }
+}
+
 async function main(): Promise<void> {
   if (!fs.existsSync(RAW_DIR)) {
     console.error(`data/raw directory not found at ${RAW_DIR}`)
     process.exit(1)
   }
 
-  const files = fs.readdirSync(RAW_DIR).filter((f) => f.endsWith('.json'))
+  // Collect minister JSON files from data/raw/ministers/ and legacy ministers/ root
+  const ministersDirs = [
+    path.join(RAW_DIR, 'ministers'),
+    path.join(process.cwd(), 'ministers'),
+  ]
+  const allMinisterFiles: string[] = []
+  for (const dir of ministersDirs) {
+    if (fs.existsSync(dir)) {
+      const found = fs.readdirSync(dir)
+        .filter((f) => f.endsWith('.json'))
+        .map((f) => path.join(dir, f))
+      allMinisterFiles.push(...found)
+    }
+  }
+  // Also pick up any loose JSON files directly in data/raw/ (backward compat)
+  const looseFiles = fs.readdirSync(RAW_DIR)
+    .filter((f) => f.endsWith('.json'))
+    .map((f) => path.join(RAW_DIR, f))
+  allMinisterFiles.push(...looseFiles)
+
+  // Deduplicate by filename
+  const seen = new Set<string>()
+  const files = allMinisterFiles.filter((f) => {
+    const base = path.basename(f)
+    if (seen.has(base)) return false
+    seen.add(base)
+    return true
+  })
 
   if (files.length === 0) {
-    console.log('No JSON files found in data/raw/')
-    process.exit(0)
-  }
+    console.log('No minister JSON files found.')
+  } else {
+    console.log(`Found ${files.length} minister file(s) to import.\n`)
 
-  console.log(`Found ${files.length} JSON file(s) to import.\n`)
+    const errors: { file: string; error: string }[] = []
 
-  const errors: { file: string; error: string }[] = []
+    for (const file of files) {
+      try {
+        await importMinister(file)
+      } catch (err) {
+        console.error(`  ✗ Failed: ${file}`, err)
+        errors.push({ file: path.basename(file), error: String(err) })
+      }
+    }
 
-  for (const file of files) {
-    try {
-      await importMinister(path.join(RAW_DIR, file))
-    } catch (err) {
-      console.error(`  ✗ Failed: ${file}`, err)
-      errors.push({ file, error: String(err) })
+    await resolveConnections()
+
+    console.log('\n──────────────────────────────')
+    console.log(`Ministers: ${files.length - errors.length} succeeded, ${errors.length} failed.`)
+    if (errors.length > 0) {
+      errors.forEach(({ file, error }) => console.log(`  - ${file}: ${error}`))
     }
   }
 
-  await resolveConnections()
+  // Import parties
+  await importParties()
 
   console.log('\n──────────────────────────────')
-  console.log(`Import complete.`)
-  console.log(`  Succeeded: ${files.length - errors.length}`)
-  console.log(`  Failed:    ${errors.length}`)
-  if (errors.length > 0) {
-    console.log('\nFailed files:')
-    errors.forEach(({ file, error }) => console.log(`  - ${file}: ${error}`))
-  }
-
+  console.log('Import complete.')
   await db.$disconnect()
 }
 

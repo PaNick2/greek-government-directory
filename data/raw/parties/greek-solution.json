@@ -1,0 +1,43 @@
+{
+  "id": "greek-solution",
+  "name": "Ελληνική Λύση",
+  "name_en": "Greek Solution",
+  "abbreviation": "ΕΛ",
+  "abbreviation_en": "ES",
+  "color": "#003399",
+  "founded": "2016-03-13",
+  "dissolved": null,
+  "political_spectrum": "right",
+  "parliamentary_status": "opposition",
+  "ideology": "Εθνικισμό, συντηρητισμό, λαϊκισμό",
+  "ideology_en": "Nationalism, conservatism, populism",
+  "bio": "Η Ελληνική Λύση ιδρύθηκε το 2016 από τον Κυριάκο Βελόπουλο. Είναι δεξιό λαϊκιστικό κόμμα με εθνικιστική και συντηρητική ιδεολογία. Το κόμμα έχει αντιμεταναστευτική πολιτική και υποστηρίζει τη σταθερότητα και τις παραδοσιακές αξίες. Αντιπροσωπεύεται από περί τους 10 βουλευτές και λειτουργεί στην δεξιά πτέρυγα της πολιτικής.",
+  "bio_en": "Greek Solution was founded in 2016 by Kyriakos Velopoulos. It is a right-wing populist party with nationalist and conservative ideology. The party has an anti-immigration policy and supports stability and traditional values. It is represented by around 10 MPs and operates on the right wing of politics.",
+  "election_results": [
+    {
+      "election_date": "2023-06-25",
+      "vote_percentage": 4.51,
+      "seats": 12,
+      "total_seats": 300,
+      "formed_government": false,
+      "source": "https://en.wikipedia.org/wiki/2023_Greek_legislative_election"
+    },
+    {
+      "election_date": "2019-07-07",
+      "vote_percentage": 3.7,
+      "seats": 10,
+      "total_seats": 300,
+      "formed_government": false,
+      "source": "https://en.wikipedia.org/wiki/2019_Greek_legislative_election"
+    }
+  ],
+  "leaders": [
+    {
+      "name": "Κυριάκος Βελόπουλος",
+      "minister_id": null,
+      "from": "2016-03-13",
+      "to": null,
+      "source": "https://en.wikipedia.org/wiki/Kyriakos_Velopoulos"
+    }
+  ]
+}

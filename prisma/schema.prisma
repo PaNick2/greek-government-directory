@@ -65,20 +65,87 @@ enum RelationType {
   mentor_mentee
 }
 
+enum PoliticalSpectrum {
+  far_left
+  left
+  centre_left
+  centre
+  centre_right
+  right
+  far_right
+}
+
+enum ParliamentaryStatus {
+  governing
+  opposition
+  junior_coalition_partner
+  extra_parliamentary
+  dissolved
+}
+
 // ─────────────────────────────────────────────
 // CORE ENTITIES
 // ─────────────────────────────────────────────
 
 model Party {
-  id         String      @id @default(cuid())
-  slug       String      @unique
-  name       String
-  name_en    String?
-  color      String?
-  ministers  Minister[]
-  partyTerms PartyTerm[]
-  createdAt  DateTime    @default(now())
-  updatedAt  DateTime    @updatedAt
+  id                   String               @id @default(cuid())
+  slug                 String               @unique
+  name                 String
+  name_en              String?
+  abbreviation         String?
+  abbreviation_en      String?
+  color                String?
+  founded              DateTime?            @db.Date
+  dissolved            DateTime?            @db.Date
+  bio                  String?              @db.Text
+  bio_en               String?              @db.Text
+  ideology             String?
+  ideology_en          String?
+  political_spectrum   PoliticalSpectrum?
+  parliamentary_status ParliamentaryStatus?
+  ministers            Minister[]
+  partyTerms           PartyTerm[]
+  electionResults      ElectionResult[]
+  leaders              PartyLeader[]
+  createdAt            DateTime             @default(now())
+  updatedAt            DateTime             @updatedAt
+}
+
+model ElectionResult {
+  id                String   @id @default(cuid())
+  party             Party    @relation(fields: [party_id], references: [id], onDelete: Cascade)
+  party_id          String
+  election_date     DateTime @db.Date
+  vote_percentage   Float?
+  seats             Int?
+  total_seats       Int?
+  formed_government Boolean  @default(false)
+  notes             String?  @db.Text
+  source            String?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  @@unique([party_id, election_date])
+  @@index([party_id])
+}
+
+model PartyLeader {
+  id          String    @id @default(cuid())
+  party       Party     @relation(fields: [party_id], references: [id], onDelete: Cascade)
+  party_id    String
+  name        String
+  minister    Minister? @relation(fields: [minister_id], references: [id], onDelete: SetNull)
+  minister_id String?
+  from        DateTime  @db.Date
+  to          DateTime? @db.Date
+  notes       String?   @db.Text
+  source      String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@unique([party_id, name, from])
+  @@index([party_id])
+  @@index([minister_id])
 }
 
 model Ministry {
@@ -135,6 +202,7 @@ model Minister {
   connectionsTo          Connection[]          @relation("ConnectionTo")
   events                 Event[]
   governmentsLed         Government[]          @relation("PrimeMinister")
+  partyLeaderships       PartyLeader[]
   createdAt              DateTime              @default(now())
   updatedAt              DateTime              @updatedAt
 

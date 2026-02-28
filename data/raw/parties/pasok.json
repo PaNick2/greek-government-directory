@@ -1,0 +1,43 @@
+{
+  "id": "pasok",
+  "name": "Πανελλήνιο Σοσιαλιστικό Κίνημα",
+  "name_en": "Panhellenic Socialist Movement",
+  "abbreviation": "ΠΑ.ΣΟ.Κ.",
+  "abbreviation_en": "PASOK",
+  "color": "#EC008C",
+  "founded": "1974-09-03",
+  "dissolved": null,
+  "political_spectrum": "centre_left",
+  "parliamentary_status": "opposition",
+  "ideology": "Σοσιαλδημοκρατία, κοινωνικό φιλελευθερισμό",
+  "ideology_en": "Social democracy, social liberalism",
+  "bio": "Το ΠΑΣΟΚ ιδρύθηκε το 1974 από τον Ανδρέα Παπανδρέου και ήταν κυρίαρχο κόμμα της ελληνικής πολιτικής για δεκαετίες. Υπηρέτησε ως κυβέρνηση πολλές φορές και ήταν ηγετικό κόμμα της κεντροαριστεράς. Σήμερα είναι εταίρος του ευρύτερου συνδυασμού της Νέας Δημοκρατίας και λειτουργεί ως κόμμα αντιπολίτευσης. Το κόμμα έχει θετική στάση προς την Ευρωπαϊκή Ένωση.",
+  "bio_en": "PASOK was founded in 1974 by Andreas Papandreou and was a dominant party in Greek politics for decades. It served as government many times and was a leading centre-left party. Today it operates as an opposition party and partner in broader coalitions. The party has a positive stance towards the European Union.",
+  "election_results": [
+    {
+      "election_date": "2023-06-25",
+      "vote_percentage": 12.96,
+      "seats": 34,
+      "total_seats": 300,
+      "formed_government": false,
+      "source": "https://en.wikipedia.org/wiki/2023_Greek_legislative_election"
+    },
+    {
+      "election_date": "2019-07-07",
+      "vote_percentage": 8.1,
+      "seats": 22,
+      "total_seats": 300,
+      "formed_government": false,
+      "source": "https://en.wikipedia.org/wiki/2019_Greek_legislative_election"
+    }
+  ],
+  "leaders": [
+    {
+      "name": "Νίκος Ανδρουλάκης",
+      "minister_id": null,
+      "from": "2021-06-27",
+      "to": null,
+      "source": "https://en.wikipedia.org/wiki/Nikos_Androulakis"
+    }
+  ]
+}

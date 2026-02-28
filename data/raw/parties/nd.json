@@ -1,0 +1,43 @@
+{
+  "id": "nd",
+  "name": "Νέα Δημοκρατία",
+  "name_en": "New Democracy",
+  "abbreviation": "ΝΔ",
+  "abbreviation_en": "ND",
+  "color": "#1A5DC6",
+  "founded": "1974-10-04",
+  "dissolved": null,
+  "political_spectrum": "centre_right",
+  "parliamentary_status": "governing",
+  "ideology": "Φιλελεύθερος συντηρητισμός, φιλοευρωπαϊσμός, χριστιανοδημοκρατία",
+  "ideology_en": "Liberal conservatism, pro-Europeanism, Christian democracy",
+  "bio": "Η Νέα Δημοκρατία ιδρύθηκε στις 4 Οκτωβρίου 1974 από τον Κωνσταντίνο Καραμανλή μετά την πτώση της χούντας. Είναι ένα από τα δύο κυρίαρχα κόμματα της Ελλάδας από τη μεταπολίτευση. Το κόμμα εκπροσωπείται από 156 βουλευτές στη Βουλή των Ελλήνων και ηγείται από τον Κυριάκο Μητσοτάκη ως Πρόεδρος. Η ιδεολογία του βασίζεται στις αρχές του φιλελευθέρου συντηρητισμού με έμφαση στην ευρωπαϊκή ολοκλήρωση και τις ελεύθερες αγορές.",
+  "bio_en": "New Democracy was founded on October 4, 1974 by Konstantinos Karamanlis after the fall of the military junta. It is one of the two dominant parties in Greece since the restoration of democracy. The party is represented by 156 MPs in the Greek Parliament and is led by Kyriakos Mitsotakis as President. Its ideology is based on principles of liberal conservatism with emphasis on European integration and free markets.",
+  "election_results": [
+    {
+      "election_date": "2023-05-28",
+      "vote_percentage": 41.68,
+      "seats": 158,
+      "total_seats": 300,
+      "formed_government": true,
+      "source": "https://en.wikipedia.org/wiki/2023_Greek_legislative_election"
+    },
+    {
+      "election_date": "2019-07-07",
+      "vote_percentage": 39.85,
+      "seats": 158,
+      "total_seats": 300,
+      "formed_government": true,
+      "source": "https://en.wikipedia.org/wiki/2019_Greek_legislative_election"
+    }
+  ],
+  "leaders": [
+    {
+      "name": "Κυριάκος Μητσοτάκης",
+      "minister_id": "kyriakos-mitsotakis",
+      "from": "2019-07-08",
+      "to": null,
+      "source": "https://en.wikipedia.org/wiki/Kyriakos_Mitsotakis"
+    }
+  ]
+}

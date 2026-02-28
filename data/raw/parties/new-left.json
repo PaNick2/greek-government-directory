@@ -1,0 +1,35 @@
+{
+  "id": "new-left",
+  "name": "Νέα Αριστερά",
+  "name_en": "New Left",
+  "abbreviation": "ΝΑ",
+  "abbreviation_en": "NA",
+  "color": "#C61C3B",
+  "founded": "2023-11-10",
+  "dissolved": null,
+  "political_spectrum": "left",
+  "parliamentary_status": "opposition",
+  "ideology": "Αριστερό σοσιαλισμό, κοινωνική δικαιοσύνη, εργατική κίνηση",
+  "ideology_en": "Left-wing socialism, social justice, labour movement",
+  "bio": "Η Νέα Αριστερά ιδρύθηκε το 2023 ως αποτέλεσμα σχίσματος εντός του ΣΥΡΙΖΑ. Το κόμμα ενσωματώνει τις αριστερές τάσεις που αποχώρησαν και αντιτίθεται στις πολιτικές λιτότητας. Αντιπροσωπεύεται από περί τους 10-15 βουλευτές και λειτουργεί σε ρόλο κριτικής αριστερής φωνής. Έχει δημοκρατικό και συμμετοχικό χαρακτήρα.",
+  "bio_en": "New Left was founded in 2023 as a result of a split within SYRIZA. The party incorporates left-wing tendencies that departed and opposes austerity policies. It is represented by around 10-15 MPs and operates as a critical left voice. It has a democratic and participatory character.",
+  "election_results": [
+    {
+      "election_date": "2024-06-09",
+      "vote_percentage": 2.5,
+      "seats": 0,
+      "total_seats": 21,
+      "formed_government": false,
+      "source": "https://en.wikipedia.org/wiki/2024_Greek_European_Parliament_election"
+    }
+  ],
+  "leaders": [
+    {
+      "name": "Λαυρέντης Αυγενάκης",
+      "minister_id": null,
+      "from": "2023-11-10",
+      "to": null,
+      "source": "https://el.wikipedia.org/wiki/Νέα_Αριστερά"
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "id": "syriza",
+  "name": "Συνασπισμός Ριζοσπαστικής Αριστεράς - Προοδευτική Συμμαχία",
+  "name_en": "Coalition of the Radical Left - Progressive Alliance",
+  "abbreviation": "ΣΥ.ΡΙΖ.Α.",
+  "abbreviation_en": "SYRIZA",
+  "color": "#E76A6E",
+  "founded": "2004-01-01",
+  "dissolved": null,
+  "political_spectrum": "centre_left",
+  "parliamentary_status": "opposition",
+  "ideology": "Σοσιαλδημοκρατία, προοδευτισμός, δημοκρατικός σοσιαλισμός",
+  "ideology_en": "Social democracy, progressivism, democratic socialism",
+  "bio": "Ο ΣΥΡΙΖΑ ιδρύθηκε το 2004 ως εκλογικός συνασπισμός και μετασχηματίστηκε σε ενιαίο κόμμα το 2012. Υπηρέτησε ως κυβέρνηση υπό τον Αλέξη Τσίπρα από το 2015 έως το 2019. Σήμερα βρίσκεται στην αξιωματική αντιπολίτευση με 25 βουλευτές. Το κόμμα κινείται στον κεντροαριστερό χώρο με έμφαση στην κοινωνική δικαιοσύνη και την προστασία των δικαιωμάτων των εργαζομένων.",
+  "bio_en": "SYRIZA was founded in 2004 as an electoral coalition and transformed into a unified party in 2012. It served as government under Alexis Tsipras from 2015 to 2019. Today it is in the official opposition with 25 MPs. The party operates in the centre-left space with emphasis on social justice and protection of workers' rights.",
+  "election_results": [
+    {
+      "election_date": "2023-06-25",
+      "vote_percentage": 17.83,
+      "seats": 47,
+      "total_seats": 300,
+      "formed_government": false,
+      "source": "https://en.wikipedia.org/wiki/2023_Greek_legislative_election"
+    },
+    {
+      "election_date": "2019-07-07",
+      "vote_percentage": 31.53,
+      "seats": 86,
+      "total_seats": 300,
+      "formed_government": false,
+      "source": "https://en.wikipedia.org/wiki/2019_Greek_legislative_election"
+    }
+  ],
+  "leaders": [
+    {
+      "name": "Σωκράτης Φάμελλος",
+      "minister_id": null,
+      "from": "2024-11-24",
+      "to": null,
+      "source": "https://en.wikipedia.org/wiki/Socrates_Famellos"
+    }
+  ]
+}
