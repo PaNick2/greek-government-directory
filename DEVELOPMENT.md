@@ -320,10 +320,10 @@ The `constitutional_court_ruling` field on `Event` records an official court dec
 
 ### Steps Taken
 
-1. **Schema** — Added `my_constitutional_assessment String? @db.Text` to the `Event` model in `prisma/schema.prisma`
-2. **Migration** — Ran `npx prisma migrate dev --name add_my_constitutional_assessment`
-3. **Import script** — Added `my_constitutional_assessment: e.my_constitutional_assessment ?? null` in the event upsert block in `scripts/import.ts`
-4. **JSON data** — Added `"my_constitutional_assessment": null` to all events in `ministers/kyriakos-mitsotakis-complete.json`
+1. **Schema** — Added `objective_constitutional_assessment String? @db.Text` and `objective_constitutionality Constitutionality?` to the `Event` model in `prisma/schema.prisma`
+2. **Migration** — Ran `npx prisma migrate dev --name rename_and_add_objective_constitutionality`
+3. **Import script** — Added `objective_constitutional_assessment` and `objective_constitutionality` mappings in the event upsert block in `scripts/import.ts`
+4. **JSON data** — Renamed `"my_constitutional_assessment"` → `"objective_constitutional_assessment"` and added `"objective_constitutionality"` to all relevant events in `ministers/kyriakos-mitsotakis-complete.json`
 5. **Minister profile page** — Updated `src/app/ministers/[id]/page.tsx`:
    - Court ruling displays in a **slate** bordered block (🏛️ Απόφαση δικαστηρίου)
    - Independent assessment displays in a **violet** bordered block (📋 Ανεξάρτητη συνταγματική εκτίμηση) when non-null
@@ -332,7 +332,7 @@ The `constitutional_court_ruling` field on `Event` records an official court dec
 
 To fill in an assessment for an event:
 1. Open the minister's JSON file (e.g. `ministers/kyriakos-mitsotakis-complete.json`)
-2. Set `"my_constitutional_assessment"` to a non-null string on the relevant event
+2. Set `"objective_constitutional_assessment"` to a non-null string on the relevant event, and set `"objective_constitutionality"` to the appropriate enum value
 3. Run `npm run import`
 4. The violet block will now render on the profile page
 

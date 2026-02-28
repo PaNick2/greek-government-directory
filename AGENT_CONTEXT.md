@@ -50,7 +50,7 @@ The site is built for transparency, not partisan purposes. All data is source-li
   - `65d6da8` — Milestone 4 (browse, filter, secondary pages)
   - `49df729` — Milestone 5 (polish, skeletons, ISR, sitemap)
   - `c5f2ddb` — Milestone 6 (GitHub push, CONTRIBUTING.md, .env.example)
-  - `0a7e561` — Ad-hoc: `my_constitutional_assessment` field on Event
+  - `0a7e561` — Ad-hoc: `objective_constitutional_assessment` + `objective_constitutionality` fields on Event
 
 ---
 
@@ -114,11 +114,12 @@ minister_id, party_id, from, to?
 ```
 id, minister_id, type (EventType), title, description?, date?, severity?,
 resolution?, vote_outcome?, constitutionality?, constitutional_court_ruling?,
-constitutional_ruling_outcome?, my_constitutional_assessment?,
-constitutional_references?, source?, source2?
+constitutional_ruling_outcome?, objective_constitutional_assessment?,
+objective_constitutionality?, constitutional_references?, source?, source2?
 ```
 - `constitutional_court_ruling` — verbatim court ruling text (factual record, may be politically influenced)
-- `my_constitutional_assessment` — independent assessment based on the constitution text (editable, starts as null)
+- `objective_constitutional_assessment` — independent free-text assessment based on the constitution text
+- `objective_constitutionality` — enum verdict derived from the independent assessment
 
 #### AssetDeclaration
 ```
@@ -280,7 +281,7 @@ Next.js pages (ISR, revalidate = 3600)
 | ISR on all pages | ✅ (revalidate = 3600) |
 | GitHub push | ✅ `PaNick2/greek-government-directory` |
 | Vercel deployment | ⏳ Pending manual setup |
-| `my_constitutional_assessment` | ✅ Schema + migration + UI |
+| `objective_constitutional_assessment` + `objective_constitutionality` | ✅ Schema + migration + UI |
 | Party enrichment (Milestone 7) | ❌ Not started |
 
 ---

@@ -11,31 +11,233 @@
   "parliamentary_status": "governing",
   "ideology": "Φιλελεύθερος συντηρητισμός, φιλοευρωπαϊσμός, χριστιανοδημοκρατία",
   "ideology_en": "Liberal conservatism, pro-Europeanism, Christian democracy",
-  "bio": "Η Νέα Δημοκρατία ιδρύθηκε στις 4 Οκτωβρίου 1974 από τον Κωνσταντίνο Καραμανλή μετά την πτώση της χούντας. Είναι ένα από τα δύο κυρίαρχα κόμματα της Ελλάδας από τη μεταπολίτευση. Το κόμμα εκπροσωπείται από 156 βουλευτές στη Βουλή των Ελλήνων και ηγείται από τον Κυριάκο Μητσοτάκη ως Πρόεδρος. Η ιδεολογία του βασίζεται στις αρχές του φιλελευθέρου συντηρητισμού με έμφαση στην ευρωπαϊκή ολοκλήρωση και τις ελεύθερες αγορές.",
-  "bio_en": "New Democracy was founded on October 4, 1974 by Konstantinos Karamanlis after the fall of the military junta. It is one of the two dominant parties in Greece since the restoration of democracy. The party is represented by 156 MPs in the Greek Parliament and is led by Kyriakos Mitsotakis as President. Its ideology is based on principles of liberal conservatism with emphasis on European integration and free markets.",
+  "bio": "Η Νέα Δημοκρατία ιδρύθηκε στις 4 Οκτωβρίου 1974 από τον Κωνσταντίνο Καραμανλή μετά την πτώση της χούντας. Είναι ένα από τα δύο κυρίαρχα κόμματα της Ελλάδας. Το κόμμα εκπροσωπείται από 156 βουλευτές και ηγείται από τον Κυριάκο Μητσοτάκη. Η ιδεολογία του βασίζεται στις αρχές του φιλελευθέρου συντηρητισμού.",
+  "bio_en": "New Democracy was founded on October 4, 1974 by Konstantinos Karamanlis after the fall of the military junta. It is one of the two dominant parties in Greece. The party is represented by 156 MPs and is led by Kyriakos Mitsotakis. Its ideology is based on principles of liberal conservatism.",
   "election_results": [
     {
-      "election_date": "2023-05-28",
-      "vote_percentage": 41.68,
+      "election_date": "1974-11-17",
+      "vote_percentage": 54.37,
+      "seats": 220,
+      "total_seats": 300,
+      "election_type": "parliamentary",
+      "formed_government": true,
+      "source": "https://en.wikipedia.org/wiki/1974_Greek_legislative_election"
+    },
+    {
+      "election_date": "1977-06-05",
+      "vote_percentage": 41.84,
+      "seats": 172,
+      "total_seats": 300,
+      "election_type": "parliamentary",
+      "formed_government": true,
+      "source": "https://en.wikipedia.org/wiki/1977_Greek_legislative_election"
+    },
+    {
+      "election_date": "1981-10-18",
+      "vote_percentage": 35.27,
+      "seats": 115,
+      "total_seats": 300,
+      "election_type": "parliamentary",
+      "formed_government": false,
+      "source": "https://en.wikipedia.org/wiki/1981_Greek_legislative_election"
+    },
+    {
+      "election_date": "1985-06-02",
+      "vote_percentage": 40.72,
+      "seats": 126,
+      "total_seats": 300,
+      "election_type": "parliamentary",
+      "formed_government": false,
+      "source": "https://en.wikipedia.org/wiki/June_1985_Greek_legislative_election"
+    },
+    {
+      "election_date": "1989-06-18",
+      "vote_percentage": 44.28,
+      "seats": 148,
+      "total_seats": 300,
+      "election_type": "parliamentary",
+      "formed_government": true,
+      "source": "https://en.wikipedia.org/wiki/June_1989_Greek_legislative_election"
+    },
+    {
+      "election_date": "1990-04-08",
+      "vote_percentage": 46.19,
+      "seats": 149,
+      "total_seats": 300,
+      "election_type": "parliamentary",
+      "formed_government": true,
+      "source": "https://en.wikipedia.org/wiki/April_1990_Greek_legislative_election"
+    },
+    {
+      "election_date": "1993-10-10",
+      "vote_percentage": 39.27,
+      "seats": 111,
+      "total_seats": 300,
+      "election_type": "parliamentary",
+      "formed_government": false,
+      "source": "https://en.wikipedia.org/wiki/1993_Greek_legislative_election"
+    },
+    {
+      "election_date": "1996-09-22",
+      "vote_percentage": 38.12,
+      "seats": 108,
+      "total_seats": 300,
+      "election_type": "parliamentary",
+      "formed_government": false,
+      "source": "https://en.wikipedia.org/wiki/1996_Greek_legislative_election"
+    },
+    {
+      "election_date": "2000-04-09",
+      "vote_percentage": 42.75,
       "seats": 158,
       "total_seats": 300,
+      "election_type": "parliamentary",
       "formed_government": true,
-      "source": "https://en.wikipedia.org/wiki/2023_Greek_legislative_election"
+      "source": "https://en.wikipedia.org/wiki/2000_Greek_legislative_election"
+    },
+    {
+      "election_date": "2004-06-13",
+      "vote_percentage": 45.27,
+      "seats": 165,
+      "total_seats": 300,
+      "election_type": "parliamentary",
+      "formed_government": true,
+      "source": "https://en.wikipedia.org/wiki/2004_Greek_legislative_election"
+    },
+    {
+      "election_date": "2007-09-16",
+      "vote_percentage": 41.84,
+      "seats": 152,
+      "total_seats": 300,
+      "election_type": "parliamentary",
+      "formed_government": true,
+      "source": "https://en.wikipedia.org/wiki/2007_Greek_legislative_election"
+    },
+    {
+      "election_date": "2009-10-04",
+      "vote_percentage": 33.48,
+      "seats": 91,
+      "total_seats": 300,
+      "election_type": "parliamentary",
+      "formed_government": false,
+      "source": "https://en.wikipedia.org/wiki/2009_Greek_legislative_election"
+    },
+    {
+      "election_date": "2012-05-06",
+      "vote_percentage": 32.49,
+      "seats": 108,
+      "total_seats": 300,
+      "election_type": "parliamentary",
+      "formed_government": false,
+      "source": "https://en.wikipedia.org/wiki/May_2012_Greek_legislative_election"
+    },
+    {
+      "election_date": "2012-06-17",
+      "vote_percentage": 41.6,
+      "seats": 129,
+      "total_seats": 300,
+      "election_type": "parliamentary",
+      "formed_government": true,
+      "source": "https://en.wikipedia.org/wiki/June_2012_Greek_legislative_election"
+    },
+    {
+      "election_date": "2015-01-25",
+      "vote_percentage": 27.81,
+      "seats": 76,
+      "total_seats": 300,
+      "election_type": "parliamentary",
+      "formed_government": false,
+      "source": "https://en.wikipedia.org/wiki/January_2015_Greek_legislative_election"
+    },
+    {
+      "election_date": "2015-09-20",
+      "vote_percentage": 35.05,
+      "seats": 102,
+      "total_seats": 300,
+      "election_type": "parliamentary",
+      "formed_government": false,
+      "source": "https://en.wikipedia.org/wiki/September_2015_Greek_legislative_election"
     },
     {
       "election_date": "2019-07-07",
       "vote_percentage": 39.85,
       "seats": 158,
       "total_seats": 300,
+      "election_type": "parliamentary",
       "formed_government": true,
       "source": "https://en.wikipedia.org/wiki/2019_Greek_legislative_election"
+    },
+    {
+      "election_date": "2023-05-21",
+      "vote_percentage": 41.08,
+      "seats": 145,
+      "total_seats": 300,
+      "election_type": "parliamentary",
+      "formed_government": false,
+      "source": "https://en.wikipedia.org/wiki/May_2023_Greek_legislative_election"
+    },
+    {
+      "election_date": "2023-06-25",
+      "vote_percentage": 41.68,
+      "seats": 158,
+      "total_seats": 300,
+      "election_type": "parliamentary",
+      "formed_government": true,
+      "source": "https://en.wikipedia.org/wiki/June_2023_Greek_legislative_election"
     }
   ],
   "leaders": [
     {
-      "name": "Κυριάκος Μητσοτάκης",
-      "minister_id": "kyriakos-mitsotakis",
-      "from": "2019-07-08",
+      "name": "Konstantinos Karamanlis",
+      "from": "1974-10-04",
+      "to": "1980-05-04",
+      "source": "https://en.wikipedia.org/wiki/Konstantinos_Karamanlis"
+    },
+    {
+      "name": "Georgios Rallis",
+      "from": "1980-05-04",
+      "to": "1981-05-28",
+      "source": "https://en.wikipedia.org/wiki/Georgios_Rallis"
+    },
+    {
+      "name": "Kostantinos Stefanopoulos",
+      "from": "1981-05-28",
+      "to": "1984-12-18",
+      "source": "https://en.wikipedia.org/wiki/Konstantin_Stephanopoulos"
+    },
+    {
+      "name": "Evangelos Averoff-Tossitsas",
+      "from": "1984-12-18",
+      "to": "1989-06-02",
+      "source": "https://en.wikipedia.org/wiki/Evangelos_Averoff-Tossitsas"
+    },
+    {
+      "name": "Konstantinos Mitsotakis",
+      "from": "1989-06-02",
+      "to": "1993-04-12",
+      "source": "https://en.wikipedia.org/wiki/Konstantinos_Mitsotakis"
+    },
+    {
+      "name": "Miltiades Evert",
+      "from": "1993-04-12",
+      "to": "1997-06-18",
+      "source": "https://en.wikipedia.org/wiki/Miltiades_Evert"
+    },
+    {
+      "name": "Kostas Karamanlis",
+      "from": "1997-06-18",
+      "to": "2004-03-07",
+      "source": "https://en.wikipedia.org/wiki/Kostas_Karamanlis"
+    },
+    {
+      "name": "Antonis Samaras",
+      "from": "2009-07-06",
+      "to": "2015-08-27",
+      "source": "https://en.wikipedia.org/wiki/Antonis_Samaras"
+    },
+    {
+      "name": "Kyriakos Mitsotakis",
+      "from": "2016-01-11",
       "to": null,
       "source": "https://en.wikipedia.org/wiki/Kyriakos_Mitsotakis"
     }

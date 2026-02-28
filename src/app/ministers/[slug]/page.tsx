@@ -157,8 +157,8 @@ export default async function MinisterDetailPage({ params }: PageProps) {
               <div className="space-y-3">
                 {constitutionalEvents.map((ev, idx) => {
                   const badge = ev.constitutionality ? CONSTITUTIONALITY_MAP[ev.constitutionality] : null
-                  const sev = ev.severity ? SEVERITY_MAP[ev.severity] : null
-                  const hasDetails = !!(ev.constitutional_notes || ev.constitutional_court_ruling || ev.my_constitutional_assessment || ev.constitutional_references.length > 0 || ev.sources.length > 0)
+                  const objBadge = ev.objective_constitutionality ? CONSTITUTIONALITY_MAP[ev.objective_constitutionality] : null
+                  const hasDetails = !!(ev.constitutional_notes || ev.constitutional_court_ruling || ev.objective_constitutional_assessment || ev.constitutional_references.length > 0 || ev.sources.length > 0)
                   return (
                     <details
                       key={ev.id}
@@ -181,22 +181,26 @@ export default async function MinisterDetailPage({ params }: PageProps) {
                             >
                               📌 {EVENT_TYPE_LABELS[ev.type] ?? ev.type}
                             </span>
-                            {badge && (
-                              <span
-                                title="Βαθμός συνταγματικότητας"
-                                className={`inline-flex items-center gap-1 rounded border px-2 py-0.5 text-xs font-medium ${badge.className}`}
-                              >
-                                ⚖️ {badge.label}
-                              </span>
-                            )}
-                            {sev && (
-                              <span
-                                title="Σοβαρότητα"
-                                className="inline-flex items-center gap-1 text-xs text-slate-500"
-                              >
-                                <span className={`h-2 w-2 rounded-full ${sev.dot}`} />
-                                {sev.label}
-                              </span>
+                            {(badge || objBadge) && (
+                              <div className="flex items-center gap-1">
+                                <span className="text-xs text-slate-400">Συνταγματικό:</span>
+                                {badge && (
+                                  <span
+                                    title="Απόφαση δικαστηρίου"
+                                    className={`inline-flex items-center gap-1 rounded border px-2 py-0.5 text-xs font-medium ${badge.className}`}
+                                  >
+                                    ⚖️ {badge.label}
+                                  </span>
+                                )}
+                                {objBadge && (
+                                  <span
+                                    title="Αντικειμενική εκτίμηση"
+                                    className="inline-flex items-center gap-1 rounded border border-violet-200 bg-violet-50 px-2 py-0.5 text-xs font-medium text-violet-700"
+                                  >
+                                    📋 {objBadge.label}
+                                  </span>
+                                )}
+                              </div>
                             )}
                           </div>
                           <div className="flex items-center gap-2 flex-shrink-0">
@@ -214,6 +218,15 @@ export default async function MinisterDetailPage({ params }: PageProps) {
                         {/* Title + description always visible */}
                         <h3 className="text-sm font-semibold text-slate-900">{ev.title}</h3>
                         {ev.description && <p className="text-sm text-slate-600 leading-relaxed">{ev.description}</p>}
+                        {/* Expand hint — only visible when collapsed */}
+                        {hasDetails && (
+                          <div className="flex items-center gap-1.5 border-t border-dashed border-black/10 pt-2 text-xs text-slate-400 group-open:hidden">
+                            <svg className="h-3.5 w-3.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                            </svg>
+                            Εμφάνιση ανάλυσης
+                          </div>
+                        )}
                       </summary>
 
                       {/* Expanded content */}
@@ -230,10 +243,10 @@ export default async function MinisterDetailPage({ params }: PageProps) {
                               <span className="font-semibold text-slate-700">🏛️ Απόφαση δικαστηρίου: </span>{ev.constitutional_court_ruling}
                             </div>
                           )}
-                          {ev.my_constitutional_assessment && (
+                          {ev.objective_constitutional_assessment && (
                             <div className="rounded-lg border border-violet-200 bg-violet-50 p-3 text-xs text-violet-900">
-                              <p className="font-semibold mb-1">📋 Ανεξάρτητη συνταγματική εκτίμηση</p>
-                              <p className="leading-relaxed">{ev.my_constitutional_assessment}</p>
+                              <p className="font-semibold mb-1">📋 Αντικειμενική συνταγματική εκτίμηση</p>
+                              <p className="leading-relaxed">{ev.objective_constitutional_assessment}</p>
                             </div>
                           )}
                           {ev.constitutional_references.length > 0 && (

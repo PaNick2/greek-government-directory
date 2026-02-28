@@ -5,39 +5,130 @@
   "abbreviation": "ΣΥ.ΡΙΖ.Α.",
   "abbreviation_en": "SYRIZA",
   "color": "#E76A6E",
-  "founded": "2004-01-01",
+  "founded": "2004-01-15",
   "dissolved": null,
   "political_spectrum": "centre_left",
   "parliamentary_status": "opposition",
   "ideology": "Σοσιαλδημοκρατία, προοδευτισμός, δημοκρατικός σοσιαλισμός",
   "ideology_en": "Social democracy, progressivism, democratic socialism",
-  "bio": "Ο ΣΥΡΙΖΑ ιδρύθηκε το 2004 ως εκλογικός συνασπισμός και μετασχηματίστηκε σε ενιαίο κόμμα το 2012. Υπηρέτησε ως κυβέρνηση υπό τον Αλέξη Τσίπρα από το 2015 έως το 2019. Σήμερα βρίσκεται στην αξιωματική αντιπολίτευση με 25 βουλευτές. Το κόμμα κινείται στον κεντροαριστερό χώρο με έμφαση στην κοινωνική δικαιοσύνη και την προστασία των δικαιωμάτων των εργαζομένων.",
-  "bio_en": "SYRIZA was founded in 2004 as an electoral coalition and transformed into a unified party in 2012. It served as government under Alexis Tsipras from 2015 to 2019. Today it is in the official opposition with 25 MPs. The party operates in the centre-left space with emphasis on social justice and protection of workers' rights.",
+  "bio": "Ο ΣΥΡΙΖΑ ιδρύθηκε το 2004 ως εκλογικός συνασπισμός και μετασχηματίστηκε σε ενιαίο κόμμα το 2012. Υπηρέτησε ως κυβέρνηση υπό τον Αλέξη Τσίπρα από το 2015 έως το 2019. Σήμερα βρίσκεται στην αξιωματική αντιπολίτευση με 25 βουλευτές. Το κόμμα κινείται στον κεντροαριστερό χώρο με έμφαση στην κοινωνική δικαιοσύνη.",
+  "bio_en": "SYRIZA was founded in 2004 as an electoral coalition and transformed into a unified party in 2012. It served as government under Alexis Tsipras from 2015 to 2019. Today it is in the official opposition with 25 MPs. The party operates in the centre-left space with emphasis on social justice.",
   "election_results": [
     {
-      "election_date": "2023-06-25",
-      "vote_percentage": 17.83,
-      "seats": 47,
+      "election_date": "2004-06-13",
+      "vote_percentage": 3.26,
+      "seats": 6,
       "total_seats": 300,
+      "election_type": "parliamentary",
       "formed_government": false,
-      "source": "https://en.wikipedia.org/wiki/2023_Greek_legislative_election"
+      "source": "https://en.wikipedia.org/wiki/2004_Greek_legislative_election"
+    },
+    {
+      "election_date": "2007-09-16",
+      "vote_percentage": 5.04,
+      "seats": 14,
+      "total_seats": 300,
+      "election_type": "parliamentary",
+      "formed_government": false,
+      "source": "https://en.wikipedia.org/wiki/2007_Greek_legislative_election"
+    },
+    {
+      "election_date": "2009-10-04",
+      "vote_percentage": 4.6,
+      "seats": 13,
+      "total_seats": 300,
+      "election_type": "parliamentary",
+      "formed_government": false,
+      "source": "https://en.wikipedia.org/wiki/2009_Greek_legislative_election"
+    },
+    {
+      "election_date": "2012-05-06",
+      "vote_percentage": 16.78,
+      "seats": 52,
+      "total_seats": 300,
+      "election_type": "parliamentary",
+      "formed_government": false,
+      "source": "https://en.wikipedia.org/wiki/May_2012_Greek_legislative_election"
+    },
+    {
+      "election_date": "2012-06-17",
+      "vote_percentage": 26.89,
+      "seats": 71,
+      "total_seats": 300,
+      "election_type": "parliamentary",
+      "formed_government": false,
+      "source": "https://en.wikipedia.org/wiki/June_2012_Greek_legislative_election"
+    },
+    {
+      "election_date": "2015-01-25",
+      "vote_percentage": 36.34,
+      "seats": 149,
+      "total_seats": 300,
+      "election_type": "parliamentary",
+      "formed_government": true,
+      "source": "https://en.wikipedia.org/wiki/January_2015_Greek_legislative_election"
+    },
+    {
+      "election_date": "2015-09-20",
+      "vote_percentage": 35.46,
+      "seats": 145,
+      "total_seats": 300,
+      "election_type": "parliamentary",
+      "formed_government": true,
+      "source": "https://en.wikipedia.org/wiki/September_2015_Greek_legislative_election"
     },
     {
       "election_date": "2019-07-07",
       "vote_percentage": 31.53,
       "seats": 86,
       "total_seats": 300,
+      "election_type": "parliamentary",
       "formed_government": false,
       "source": "https://en.wikipedia.org/wiki/2019_Greek_legislative_election"
+    },
+    {
+      "election_date": "2023-05-21",
+      "vote_percentage": 20.07,
+      "seats": 71,
+      "total_seats": 300,
+      "election_type": "parliamentary",
+      "formed_government": false,
+      "source": "https://en.wikipedia.org/wiki/May_2023_Greek_legislative_election"
+    },
+    {
+      "election_date": "2023-06-25",
+      "vote_percentage": 17.83,
+      "seats": 47,
+      "total_seats": 300,
+      "election_type": "parliamentary",
+      "formed_government": false,
+      "source": "https://en.wikipedia.org/wiki/June_2023_Greek_legislative_election"
     }
   ],
   "leaders": [
     {
-      "name": "Σωκράτης Φάμελλος",
-      "minister_id": null,
+      "name": "Alekos Alavanos",
+      "from": "2004-06-13",
+      "to": "2008-02-10",
+      "source": "https://en.wikipedia.org/wiki/Alekos_Alavanos"
+    },
+    {
+      "name": "Alexis Tsipras",
+      "from": "2008-02-10",
+      "to": "2023-06-27",
+      "source": "https://en.wikipedia.org/wiki/Alexis_Tsipras"
+    },
+    {
+      "name": "Stefanos Kasselakis",
+      "from": "2023-09-16",
+      "to": "2024-09-08",
+      "source": "https://en.wikipedia.org/wiki/Stefanos_Kasselakis"
+    },
+    {
+      "name": "Sokratis Famellos",
       "from": "2024-11-24",
       "to": null,
-      "source": "https://en.wikipedia.org/wiki/Socrates_Famellos"
+      "source": "https://en.wikipedia.org/wiki/Sokratis_Famellos"
     }
   ]
 }

@@ -4,7 +4,7 @@
 > **Target audience:** AI scraping agent / data entry operator
 > **Purpose:** For every `event` in a minister's JSON file, do two things:
 > 1. **Research** whether constitutionality fields apply and fill them in accurately with cited sources.
-> 2. **Assess independently** whether the action was constitutional or not, based on the text of the Greek Constitution — regardless of what any court has ruled. Record this in `my_constitutional_assessment`.
+> 2. **Assess independently** whether the action was constitutional or not, based on the text of the Greek Constitution — regardless of what any court has ruled. Record this in `objective_constitutional_assessment` (text) and `objective_constitutionality` (enum verdict).
 
 ---
 
@@ -375,7 +375,7 @@ pending     → Η αίτηση εκκρεμεί
 
 ---
 
-### Ανεξάρτητη συνταγματική εκτίμηση (`my_constitutional_assessment`)
+### Ανεξάρτητη συνταγματική εκτίμηση (`objective_constitutional_assessment` + `objective_constitutionality`)
 
 Πέρα από την καταγραφή τι αποφάσισαν τα δικαστήρια, ο agent **οφείλει να διαμορφώσει δική του εκτίμηση** για το αν η πράξη/νόμος ήταν συνταγματικός ή όχι, βασισμένη αποκλειστικά στο κείμενο του Συντάγματος.
 
@@ -395,7 +395,8 @@ pending     → Η αίτηση εκκρεμεί
 
 **Παράδειγμα:**
 ```
-"my_constitutional_assessment": "Η διάταξη φαίνεται να αντίκειται στο άρθρο 9Α του Συντάγματος που κατοχυρώνει την προστασία προσωπικών δεδομένων, καθώς επιτρέπει πρόσβαση σε επικοινωνίες χωρίς προηγούμενη δικαστική εντολή. Η απουσία δικαστικού ελέγχου προ της επέμβασης παραβιάζει επίσης το άρθρο 19. Ακόμα κι αν θεωρηθεί ότι εξυπηρετεί σκοπό δημόσιου συμφέροντος, το μέτρο δεν πληροί την αρχή αναλογικότητας (άρθρο 25 παρ. 1)."
+"objective_constitutionality": "unconstitutional",
+"objective_constitutional_assessment": "Η διάταξη φαίνεται να αντίκειται στο άρθρο 9Α του Συντάγματος που κατοχυρώνει την προστασία προσωπικών δεδομένων, καθώς επιτρέπει πρόσβαση σε επικοινωνίες χωρίς προηγούμενη δικαστική εντολή. Η απουσία δικαστικού ελέγχου προ της επέμβασης παραβιάζει επίσης το άρθρο 19. Ακόμα κι αν θεωρηθεί ότι εξυπηρετεί σκοπό δημόσιου συμφέροντος, το μέτρο δεν πληροί την αρχή αναλογικότητας (άρθρο 25 παρ. 1)."
 ```
 
 ### Template αιτήματος για AI agent
@@ -426,7 +427,8 @@ pending     → Η αίτηση εκκρεμεί
 - constitutional_court_ruling (αριθμός επίσημης απόφασης ή null)
 - constitutional_ruling_outcome (upheld/struck_down/referred/pending ή null)
 - constitutional_references (array: article, constitution_year, description, source)
-- my_constitutional_assessment (ελληνικά, 2-6 προτάσεις — η δική σου εκτίμηση βάσει Συντάγματος, ή null αν δεν έχει συνταγματική διάσταση)
+- objective_constitutionality (constitutional/unconstitutional/disputed/pending_ruling/not_applicable ή null — η δική σου εκτίμηση ως enum)
+- objective_constitutional_assessment (ελληνικά, 2-6 προτάσεις — η δική σου εκτίμηση βάσει Συντάγματος, ή null αν δεν έχει συνταγματική διάσταση)
 ```
 
 ---
@@ -457,6 +459,9 @@ pending     → Η αίτηση εκκρεμεί
       "constitutional_notes": "Ελεύθερο κείμενο ελληνικά — null αν δεν αφορά",
       "constitutional_court_ruling": "π.χ. ΣτΕ Ολ. 1234/2020 — null αν δεν υπάρχει",
       "constitutional_ruling_outcome": "upheld | struck_down | referred | pending | null",
+
+      "objective_constitutionality": "constitutional | unconstitutional | disputed | pending_ruling | not_applicable | null",
+      "objective_constitutional_assessment": "Ελεύθερο κείμενο ελληνικά — null αν δεν έχει συνταγματική διάσταση",
 
       "constitutional_references": [
         {
@@ -492,6 +497,8 @@ pending     → Η αίτηση εκκρεμεί
 | `constitutional_references[].constitution_year` | `constitution_year` | `ConstitutionalReference` (Int) |
 | `constitutional_references[].description` | `description` | `ConstitutionalReference` (Text) |
 | `constitutional_references[].source` | `source` | `ConstitutionalReference` (String?) |
+| `objective_constitutionality` | `objective_constitutionality` | `Event` (`Constitutionality` enum) |
+| `objective_constitutional_assessment` | `objective_constitutional_assessment` | `Event` (Text) |
 
 **Import script path:** `scripts/import.ts` — handles the `constitutional_references` array automatically via nested upsert.
 

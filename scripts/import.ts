@@ -393,7 +393,8 @@ async function importMinister(filePath: string): Promise<void> {
           constitutional_notes: e.constitutional_notes ?? null,
           constitutional_court_ruling: e.constitutional_court_ruling ?? null,
           constitutional_ruling_outcome: e.constitutional_ruling_outcome ?? null,
-          my_constitutional_assessment: e.my_constitutional_assessment ?? null,
+          objective_constitutional_assessment: e.objective_constitutional_assessment ?? null,
+          objective_constitutionality: e.objective_constitutionality ?? null,
         },
       })
 
@@ -574,6 +575,7 @@ async function importParties(): Promise<void> {
         await db.electionResult.upsert({
           where: { party_id_election_date: { party_id: party.id, election_date: electionDate } },
           update: {
+            election_type: er.election_type ?? 'parliamentary',
             vote_percentage: er.vote_percentage ?? null,
             seats: er.seats ?? null,
             total_seats: er.total_seats ?? null,
@@ -584,6 +586,7 @@ async function importParties(): Promise<void> {
           create: {
             party_id: party.id,
             election_date: electionDate,
+            election_type: er.election_type ?? 'parliamentary',
             vote_percentage: er.vote_percentage ?? null,
             seats: er.seats ?? null,
             total_seats: er.total_seats ?? null,

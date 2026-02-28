@@ -83,6 +83,13 @@ enum ParliamentaryStatus {
   dissolved
 }
 
+enum ElectionType {
+  parliamentary
+  european
+  local
+  referendum
+}
+
 // ─────────────────────────────────────────────
 // CORE ENTITIES
 // ─────────────────────────────────────────────
@@ -119,11 +126,12 @@ model ElectionResult {
   vote_percentage   Float?
   seats             Int?
   total_seats       Int?
-  formed_government Boolean  @default(false)
-  notes             String?  @db.Text
+  election_type     ElectionType @default(parliamentary)
+  formed_government Boolean      @default(false)
+  notes             String?      @db.Text
   source            String?
-  createdAt         DateTime @default(now())
-  updatedAt         DateTime @updatedAt
+  createdAt         DateTime     @default(now())
+  updatedAt         DateTime     @updatedAt
 
   @@unique([party_id, election_date])
   @@index([party_id])
@@ -344,8 +352,9 @@ model Event {
   constitutional_notes          String?                     @db.Text
   constitutional_court_ruling   String?
   constitutional_ruling_outcome ConstitutionalRulingOutcome?
-  my_constitutional_assessment  String?                     @db.Text
-  sources                       EventSource[]
+  objective_constitutional_assessment String?                     @db.Text
+  objective_constitutionality          Constitutionality?
+  sources                              EventSource[]
   constitutional_references     ConstitutionalReference[]
   createdAt                     DateTime                    @default(now())
   updatedAt                     DateTime                    @updatedAt

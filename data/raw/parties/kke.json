@@ -5,39 +5,211 @@
   "abbreviation": "ΚΚΕ",
   "abbreviation_en": "KKE",
   "color": "#EE334E",
-  "founded": "1918-11-04",
+  "founded": "1918-11-17",
   "dissolved": null,
   "political_spectrum": "far_left",
   "parliamentary_status": "opposition",
   "ideology": "Κομμουνισμός, μαρξισμό-λενινισμό, αντιιμπεριαλισμό",
   "ideology_en": "Communism, Marxism-Leninism, anti-imperialism",
-  "bio": "Το ΚΚΕ ιδρύθηκε το 1918 και είναι ένα από τα παλαιότερα κόμματα της Ελλάδας. Παίζει περιορισμένο ρόλο στη σύγχρονη ελληνική πολιτική με σταθερή εκλογική αποδοχή γύρω στο 5-6%. Το κόμμα εξασκεί κριτική στην Ευρωπαϊκή Ένωση και υποστηρίζει την κατάρρευση του καπιταλισμού. Συμμετέχει σε αριστερές ενώσεις σε ευρωπαϊκό επίπεδο.",
-  "bio_en": "The KKE was founded in 1918 and is one of the oldest parties in Greece. It plays a limited role in contemporary Greek politics with stable electoral support around 5-6%. The party criticizes the European Union and advocates for the collapse of capitalism. It participates in left-wing alliances at the European level.",
+  "bio": "Το ΚΚΕ ιδρύθηκε το 1918 και είναι ένα από τα παλαιότερα κόμματα της Ελλάδας. Απαγορεύθηκε το 1936 αλλά διαδραμάτισε σημαντικό ρόλο στην ελληνική αντίσταση. Παίζει περιορισμένο ρόλο στη σύγχρονη ελληνική πολιτική με σταθερή εκλογική αποδοχή γύρω στο 5-6%. Το κόμμα εξασκεί κριτική στην Ευρωπαϊκή Ένωση και υποστηρίζει τον διεθνή κομμουνισμό.",
+  "bio_en": "The KKE was founded in 1918 and is one of the oldest parties in Greece. It was banned in 1936 but played a significant role in Greek resistance. It plays a limited role in contemporary Greek politics with stable electoral support around 5-6%. The party criticizes the European Union and supports international communism.",
   "election_results": [
     {
-      "election_date": "2023-06-25",
-      "vote_percentage": 5.31,
-      "seats": 14,
+      "election_date": "1974-11-17",
+      "vote_percentage": 9.47,
+      "seats": 8,
       "total_seats": 300,
+      "election_type": "parliamentary",
       "formed_government": false,
-      "source": "https://en.wikipedia.org/wiki/2023_Greek_legislative_election"
+      "source": "https://en.wikipedia.org/wiki/1974_Greek_legislative_election"
+    },
+    {
+      "election_date": "1977-06-05",
+      "vote_percentage": 9.39,
+      "seats": 26,
+      "total_seats": 300,
+      "election_type": "parliamentary",
+      "formed_government": false,
+      "source": "https://en.wikipedia.org/wiki/1977_Greek_legislative_election"
+    },
+    {
+      "election_date": "1981-10-18",
+      "vote_percentage": 10.92,
+      "seats": 44,
+      "total_seats": 300,
+      "election_type": "parliamentary",
+      "formed_government": false,
+      "source": "https://en.wikipedia.org/wiki/1981_Greek_legislative_election"
+    },
+    {
+      "election_date": "1985-06-02",
+      "vote_percentage": 9.94,
+      "seats": 37,
+      "total_seats": 300,
+      "election_type": "parliamentary",
+      "formed_government": false,
+      "source": "https://en.wikipedia.org/wiki/June_1985_Greek_legislative_election"
+    },
+    {
+      "election_date": "1989-06-18",
+      "vote_percentage": 10.71,
+      "seats": 28,
+      "total_seats": 300,
+      "election_type": "parliamentary",
+      "formed_government": false,
+      "source": "https://en.wikipedia.org/wiki/June_1989_Greek_legislative_election"
+    },
+    {
+      "election_date": "1990-04-08",
+      "vote_percentage": 10.27,
+      "seats": 21,
+      "total_seats": 300,
+      "election_type": "parliamentary",
+      "formed_government": false,
+      "source": "https://en.wikipedia.org/wiki/April_1990_Greek_legislative_election"
+    },
+    {
+      "election_date": "1993-10-10",
+      "vote_percentage": 4.53,
+      "seats": 9,
+      "total_seats": 300,
+      "election_type": "parliamentary",
+      "formed_government": false,
+      "source": "https://en.wikipedia.org/wiki/1993_Greek_legislative_election"
+    },
+    {
+      "election_date": "1996-09-22",
+      "vote_percentage": 5.62,
+      "seats": 11,
+      "total_seats": 300,
+      "election_type": "parliamentary",
+      "formed_government": false,
+      "source": "https://en.wikipedia.org/wiki/1996_Greek_legislative_election"
+    },
+    {
+      "election_date": "2000-04-09",
+      "vote_percentage": 5.48,
+      "seats": 11,
+      "total_seats": 300,
+      "election_type": "parliamentary",
+      "formed_government": false,
+      "source": "https://en.wikipedia.org/wiki/2000_Greek_legislative_election"
+    },
+    {
+      "election_date": "2004-06-13",
+      "vote_percentage": 5.92,
+      "seats": 12,
+      "total_seats": 300,
+      "election_type": "parliamentary",
+      "formed_government": false,
+      "source": "https://en.wikipedia.org/wiki/2004_Greek_legislative_election"
+    },
+    {
+      "election_date": "2007-09-16",
+      "vote_percentage": 5.89,
+      "seats": 22,
+      "total_seats": 300,
+      "election_type": "parliamentary",
+      "formed_government": false,
+      "source": "https://en.wikipedia.org/wiki/2007_Greek_legislative_election"
+    },
+    {
+      "election_date": "2009-10-04",
+      "vote_percentage": 7.48,
+      "seats": 21,
+      "total_seats": 300,
+      "election_type": "parliamentary",
+      "formed_government": false,
+      "source": "https://en.wikipedia.org/wiki/2009_Greek_legislative_election"
+    },
+    {
+      "election_date": "2012-05-06",
+      "vote_percentage": 4.6,
+      "seats": 12,
+      "total_seats": 300,
+      "election_type": "parliamentary",
+      "formed_government": false,
+      "source": "https://en.wikipedia.org/wiki/May_2012_Greek_legislative_election"
+    },
+    {
+      "election_date": "2012-06-17",
+      "vote_percentage": 4.5,
+      "seats": 12,
+      "total_seats": 300,
+      "election_type": "parliamentary",
+      "formed_government": false,
+      "source": "https://en.wikipedia.org/wiki/June_2012_Greek_legislative_election"
+    },
+    {
+      "election_date": "2015-01-25",
+      "vote_percentage": 5.47,
+      "seats": 15,
+      "total_seats": 300,
+      "election_type": "parliamentary",
+      "formed_government": false,
+      "source": "https://en.wikipedia.org/wiki/January_2015_Greek_legislative_election"
+    },
+    {
+      "election_date": "2015-09-20",
+      "vote_percentage": 5.55,
+      "seats": 15,
+      "total_seats": 300,
+      "election_type": "parliamentary",
+      "formed_government": false,
+      "source": "https://en.wikipedia.org/wiki/September_2015_Greek_legislative_election"
     },
     {
       "election_date": "2019-07-07",
       "vote_percentage": 5.3,
       "seats": 15,
       "total_seats": 300,
+      "election_type": "parliamentary",
       "formed_government": false,
       "source": "https://en.wikipedia.org/wiki/2019_Greek_legislative_election"
+    },
+    {
+      "election_date": "2023-05-21",
+      "vote_percentage": 5.27,
+      "seats": 14,
+      "total_seats": 300,
+      "election_type": "parliamentary",
+      "formed_government": false,
+      "source": "https://en.wikipedia.org/wiki/May_2023_Greek_legislative_election"
+    },
+    {
+      "election_date": "2023-06-25",
+      "vote_percentage": 5.31,
+      "seats": 14,
+      "total_seats": 300,
+      "election_type": "parliamentary",
+      "formed_government": false,
+      "source": "https://en.wikipedia.org/wiki/June_2023_Greek_legislative_election"
     }
   ],
   "leaders": [
     {
-      "name": "Δημήτρης Κουτσούμπας",
-      "minister_id": null,
+      "name": "Leonidas Stringos",
+      "from": "1969-04-07",
+      "to": "1972-04-13",
+      "source": "https://en.wikipedia.org/wiki/Leonidas_Stringos"
+    },
+    {
+      "name": "Charilaos Florakis",
+      "from": "1972-04-13",
+      "to": "1991-06-13",
+      "source": "https://en.wikipedia.org/wiki/Charilaos_Florakis"
+    },
+    {
+      "name": "Aleka Papariga",
+      "from": "1991-06-13",
+      "to": "2013-02-03",
+      "source": "https://en.wikipedia.org/wiki/Aleka_Papariga"
+    },
+    {
+      "name": "Dimitris Koutsoumpas",
       "from": "2013-02-03",
       "to": null,
-      "source": "https://en.wikipedia.org/wiki/Dimitris_Koutsoumbas"
+      "source": "https://en.wikipedia.org/wiki/Dimitris_Koutsoumpas"
     }
   ]
 }
