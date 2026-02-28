@@ -189,8 +189,14 @@ export default async function MinisterDetailPage({ params }: PageProps) {
                         </div>
                       )}
                       {ev.constitutional_court_ruling && (
-                        <div className="mt-2 text-xs text-slate-600">
-                          <span className="font-medium">Απόφαση: </span>{ev.constitutional_court_ruling}
+                        <div className="mt-2 rounded border border-slate-200 bg-slate-50 p-2 text-xs text-slate-600">
+                          <span className="font-semibold text-slate-700">🏛️ Απόφαση δικαστηρίου: </span>{ev.constitutional_court_ruling}
+                        </div>
+                      )}
+                      {ev.my_constitutional_assessment && (
+                        <div className="mt-2 rounded-lg border border-violet-200 bg-violet-50 p-3 text-xs text-violet-900">
+                          <p className="font-semibold mb-1">📋 Ανεξάρτητη συνταγματική εκτίμηση</p>
+                          <p className="leading-relaxed">{ev.my_constitutional_assessment}</p>
                         </div>
                       )}
                       {ev.constitutional_references.length > 0 && (
@@ -506,4 +512,3 @@ export default async function MinisterDetailPage({ params }: PageProps) {
     </div>
   )
 }
-

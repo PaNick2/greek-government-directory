@@ -276,6 +276,7 @@ model Event {
   constitutional_notes          String?                     @db.Text
   constitutional_court_ruling   String?
   constitutional_ruling_outcome ConstitutionalRulingOutcome?
+  my_constitutional_assessment  String?                     @db.Text
   sources                       EventSource[]
   constitutional_references     ConstitutionalReference[]
   createdAt                     DateTime                    @default(now())

@@ -385,6 +385,7 @@ async function importMinister(filePath: string): Promise<void> {
           constitutional_notes: e.constitutional_notes ?? null,
           constitutional_court_ruling: e.constitutional_court_ruling ?? null,
           constitutional_ruling_outcome: e.constitutional_ruling_outcome ?? null,
+          my_constitutional_assessment: e.my_constitutional_assessment ?? null,
         },
       })
 
