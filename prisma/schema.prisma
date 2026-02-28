@@ -1,0 +1,412 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ─────────────────────────────────────────────
+// ENUMS
+// ─────────────────────────────────────────────
+
+enum EventType {
+  vote
+  scandal
+  legal
+  statement
+  achievement
+  appointment
+  financial
+  media
+}
+
+enum Severity {
+  low
+  medium
+  high
+}
+
+enum Resolution {
+  resolved
+  ongoing
+  pending
+  dismissed
+}
+
+enum VoteOutcome {
+  passed
+  rejected
+  abstained
+}
+
+enum Constitutionality {
+  constitutional
+  unconstitutional
+  disputed
+  pending_ruling
+  not_applicable
+}
+
+enum ConstitutionalRulingOutcome {
+  upheld
+  struck_down
+  referred
+  pending
+}
+
+enum RelationType {
+  party_colleague
+  family
+  business
+  friendship
+  political_rivalry
+  mentor_mentee
+}
+
+// ─────────────────────────────────────────────
+// CORE ENTITIES
+// ─────────────────────────────────────────────
+
+model Party {
+  id         String      @id @default(cuid())
+  slug       String      @unique
+  name       String
+  name_en    String?
+  color      String?
+  ministers  Minister[]
+  partyTerms PartyTerm[]
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
+}
+
+model Ministry {
+  id           String        @id @default(cuid())
+  slug         String        @unique
+  name         String
+  name_en      String?
+  cabinetRoles CabinetRole[]
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+}
+
+model Government {
+  id                String        @id @default(cuid())
+  slug              String        @unique
+  name              String
+  name_en           String?
+  start_date        DateTime
+  end_date          DateTime?
+  prime_minister    Minister?     @relation("PrimeMinister", fields: [prime_minister_id], references: [id])
+  prime_minister_id String?
+  cabinetRoles      CabinetRole[]
+  createdAt         DateTime      @default(now())
+  updatedAt         DateTime      @updatedAt
+}
+
+model Minister {
+  id                     String                @id @default(cuid())
+  slug                   String                @unique
+  name                   String
+  name_en                String?
+  born                   DateTime?
+  died                   DateTime?
+  birthplace             String?
+  party                  Party?                @relation(fields: [party_id], references: [id])
+  party_id               String?
+  bio                    String?               @db.Text
+  bio_en                 String?               @db.Text
+  career_before_politics String?               @db.Text
+  partyTerms             PartyTerm[]
+  education              Education[]
+  familyMembers          FamilyMember[]
+  cabinetRoles           CabinetRole[]
+  parliamentaryTerms     ParliamentaryTerm[]
+  committees             CommitteeMembership[]
+  billsProposed          BillProposed[]
+  assetDeclarations      AssetDeclaration[]
+  businessInterests      BusinessInterest[]
+  mediaTies              MediaTie[]
+  policyPositions        PolicyPosition[]
+  quotes                 Quote[]
+  contradictions         Contradiction[]
+  connectionsFrom        Connection[]          @relation("ConnectionFrom")
+  connectionsTo          Connection[]          @relation("ConnectionTo")
+  events                 Event[]
+  governmentsLed         Government[]          @relation("PrimeMinister")
+  createdAt              DateTime              @default(now())
+  updatedAt              DateTime              @updatedAt
+
+  @@index([party_id])
+}
+
+// ─────────────────────────────────────────────
+// CAREER & PARTY
+// ─────────────────────────────────────────────
+
+model PartyTerm {
+  id          String    @id @default(cuid())
+  minister    Minister  @relation(fields: [minister_id], references: [id])
+  minister_id String
+  party       Party     @relation(fields: [party_id], references: [id])
+  party_id    String
+  from        DateTime?
+  to          DateTime?
+  source      String?
+  createdAt   DateTime  @default(now())
+
+  @@index([minister_id])
+}
+
+model CabinetRole {
+  id            String     @id @default(cuid())
+  minister      Minister   @relation(fields: [minister_id], references: [id])
+  minister_id   String
+  government    Government @relation(fields: [government_id], references: [id])
+  government_id String
+  ministry      Ministry?  @relation(fields: [ministry_id], references: [id])
+  ministry_id   String?
+  role          String
+  role_en       String?
+  start_date    DateTime
+  end_date      DateTime?
+  source        String?
+  createdAt     DateTime   @default(now())
+
+  @@index([minister_id])
+  @@index([government_id])
+  @@index([ministry_id])
+}
+
+// ─────────────────────────────────────────────
+// PERSONAL & BACKGROUND
+// ─────────────────────────────────────────────
+
+model Education {
+  id          String   @id @default(cuid())
+  minister    Minister @relation(fields: [minister_id], references: [id])
+  minister_id String
+  degree      String
+  degree_en   String?
+  institution String
+  year        Int?
+  source      String?
+  createdAt   DateTime @default(now())
+
+  @@index([minister_id])
+}
+
+model FamilyMember {
+  id             String   @id @default(cuid())
+  minister       Minister @relation(fields: [minister_id], references: [id])
+  minister_id    String
+  name           String
+  relation       String
+  political_role String?
+  source         String?
+  createdAt      DateTime @default(now())
+
+  @@index([minister_id])
+}
+
+// ─────────────────────────────────────────────
+// PARLIAMENTARY ACTIVITY
+// ─────────────────────────────────────────────
+
+model ParliamentaryTerm {
+  id           String   @id @default(cuid())
+  minister     Minister @relation(fields: [minister_id], references: [id])
+  minister_id  String
+  constituency String?
+  from         Int
+  to           Int?
+  source       String?
+  createdAt    DateTime @default(now())
+
+  @@index([minister_id])
+}
+
+model CommitteeMembership {
+  id          String    @id @default(cuid())
+  minister    Minister  @relation(fields: [minister_id], references: [id])
+  minister_id String
+  name        String
+  role        String?
+  from        DateTime?
+  to          DateTime?
+  source      String?
+  createdAt   DateTime  @default(now())
+
+  @@index([minister_id])
+}
+
+model BillProposed {
+  id          String    @id @default(cuid())
+  minister    Minister  @relation(fields: [minister_id], references: [id])
+  minister_id String
+  title       String
+  date        DateTime?
+  outcome     String?
+  source      String?
+  createdAt   DateTime  @default(now())
+
+  @@index([minister_id])
+}
+
+// ─────────────────────────────────────────────
+// ACCOUNTABILITY & EVENTS
+// ─────────────────────────────────────────────
+
+model Event {
+  id                            String                      @id @default(cuid())
+  slug                          String                      @unique
+  minister                      Minister                    @relation(fields: [minister_id], references: [id])
+  minister_id                   String
+  type                          EventType
+  date                          DateTime
+  title                         String
+  title_en                      String?
+  description                   String                      @db.Text
+  description_en                String?                     @db.Text
+  severity                      Severity?
+  resolution                    Resolution?
+  vote_outcome                  VoteOutcome?
+  constitutionality             Constitutionality?
+  constitutional_notes          String?                     @db.Text
+  constitutional_court_ruling   String?
+  constitutional_ruling_outcome ConstitutionalRulingOutcome?
+  sources                       EventSource[]
+  constitutional_references     ConstitutionalReference[]
+  createdAt                     DateTime                    @default(now())
+  updatedAt                     DateTime                    @updatedAt
+
+  @@index([minister_id])
+  @@index([type])
+  @@index([date])
+  @@index([constitutionality])
+}
+
+model EventSource {
+  id       String @id @default(cuid())
+  event    Event  @relation(fields: [event_id], references: [id])
+  event_id String
+  label    String
+  url      String
+
+  @@index([event_id])
+}
+
+model ConstitutionalReference {
+  id                String   @id @default(cuid())
+  event             Event    @relation(fields: [event_id], references: [id])
+  event_id          String
+  article           String
+  constitution_year Int?
+  description       String?  @db.Text
+  source            String?
+  createdAt         DateTime @default(now())
+
+  @@index([event_id])
+  @@index([article])
+}
+
+model AssetDeclaration {
+  id                 String   @id @default(cuid())
+  minister           Minister @relation(fields: [minister_id], references: [id])
+  minister_id        String
+  year               Int
+  declared_value_eur Float?
+  notes              String?  @db.Text
+  source             String?
+  createdAt          DateTime @default(now())
+
+  @@index([minister_id])
+}
+
+model BusinessInterest {
+  id          String    @id @default(cuid())
+  minister    Minister  @relation(fields: [minister_id], references: [id])
+  minister_id String
+  company     String
+  role        String?
+  from        DateTime?
+  to          DateTime?
+  notes       String?   @db.Text
+  source      String?
+  createdAt   DateTime  @default(now())
+
+  @@index([minister_id])
+}
+
+model MediaTie {
+  id           String   @id @default(cuid())
+  minister     Minister @relation(fields: [minister_id], references: [id])
+  minister_id  String
+  media_outlet String
+  nature       String   @db.Text
+  source       String?
+  createdAt    DateTime @default(now())
+
+  @@index([minister_id])
+}
+
+// ─────────────────────────────────────────────
+// PROFILE DEPTH
+// ─────────────────────────────────────────────
+
+model PolicyPosition {
+  id          String   @id @default(cuid())
+  minister    Minister @relation(fields: [minister_id], references: [id])
+  minister_id String
+  topic       String
+  position    String   @db.Text
+  source      String?
+  createdAt   DateTime @default(now())
+
+  @@index([minister_id])
+}
+
+model Quote {
+  id          String    @id @default(cuid())
+  minister    Minister  @relation(fields: [minister_id], references: [id])
+  minister_id String
+  text        String    @db.Text
+  date        DateTime?
+  context     String?
+  source      String?
+  createdAt   DateTime  @default(now())
+
+  @@index([minister_id])
+}
+
+model Contradiction {
+  id               String    @id @default(cuid())
+  minister         Minister  @relation(fields: [minister_id], references: [id])
+  minister_id      String
+  topic            String
+  past_position    String    @db.Text
+  past_date        DateTime?
+  past_source      String?
+  current_position String    @db.Text
+  current_date     DateTime?
+  current_source   String?
+  createdAt        DateTime  @default(now())
+
+  @@index([minister_id])
+}
+
+model Connection {
+  id            String       @id @default(cuid())
+  from_minister Minister     @relation("ConnectionFrom", fields: [from_id], references: [id])
+  from_id       String
+  to_minister   Minister     @relation("ConnectionTo", fields: [to_id], references: [id])
+  to_id         String
+  relation_type RelationType
+  notes         String?      @db.Text
+  source        String?
+  createdAt     DateTime     @default(now())
+
+  @@index([from_id])
+  @@index([to_id])
+}

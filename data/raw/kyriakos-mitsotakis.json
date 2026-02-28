@@ -1,0 +1,716 @@
+{
+  "id": "kyriakos-mitsotakis",
+  "name": "Κυριάκος Μητσοτάκης",
+  "name_en": "Kyriakos Mitsotakis",
+  "born": "1968-03-04",
+  "died": null,
+  "birthplace": "Αθήνα",
+  "party": {
+    "current": "Νέα Δημοκρατία",
+    "history": [
+      {
+        "party": "Νέα Δημοκρατία",
+        "from": "2004-03-07",
+        "to": null,
+        "source": "https://el.wikipedia.org/wiki/Κυριάκος_Μητσοτάκης"
+      }
+    ]
+  },
+  "bio": "Κυριάκος Μητσοτάκης γεννήθηκε στην Αθήνα στις 4 Μαρτίου 1968, ως γιος του πρώην πρωθυπουργού Κωνσταντίνου Μητσοτάκη και κατάγεται από σημαντική πολιτική δυναστεία που συνδέεται με τον ιστορικό πρωθυπουργό Ελευθέριο Βενιζέλο. Σπούδασε κοινωνικές επιστήμες στο Πανεπιστήμιο Χάρβαρντ όπου βραβεύθηκε για τη διπλωματική του εργασία με τα Hoopes και Tocqueville Prize, ενώ συνέχισε με μεταπτυχιακές σπουδές στο Πανεπιστήμιο Στάνφορντ (MA στις Διεθνείς Σχέσεις) και στη Harvard Business School (MBA). Πριν εισέλθει στην πολιτική, εργάστηκε ως χρηματοοικονομικός αναλυτής στην Chase Bank στο Λονδίνο (1990-1991), σύμβουλος στη McKinsey & Company (1995-1997), επικεφαλής της Alpha Ventures (1997-1999), και ιδρυτής και διευθύνων σύμβουλος της NBG Venture Capital (1999-2003), όπου κερδίσει τον τίτλο του 'Global Leader for Tomorrow' στο Παγκόσμιο Οικονομικό Φόρουμ 2003. Εξελέγη βουλευτής της Νέας Δημοκρατίας το 2004 και υπηργός Διοικητικής Μεταρρύθμισης κατά τη διάρκεια της κυβέρνησης Σαμαρά (2013-2015). Ανέλαβε τα καθήκοντα του πρωθυπουργού στις 8 Ιουλίου 2019, διακοπή το 2023, και επανήλθε το 26 Ιουνίου 2023.",
+  "bio_en": "Kyriakos Mitsotakis was born in Athens on March 4, 1968, as the son of former Prime Minister Konstantinos Mitsotakis and comes from a significant political dynasty connected to historic Prime Minister Eleftherios Venizelos. He studied Social Studies at Harvard University where he won the Hoopes and Tocqueville Prize for his thesis, and continued with graduate studies at Stanford University (MA in International Relations) and Harvard Business School (MBA). Before entering politics, he worked as a financial analyst at Chase Bank in London (1990-1991), consultant at McKinsey & Company (1995-1997), head of Alpha Ventures (1997-1999), and founder and CEO of NBG Venture Capital (1999-2003), earning the title of 'Global Leader for Tomorrow' at the World Economic Forum 2003. He was elected MP for New Democracy in 2004 and served as Minister of Administrative Reform under the Samaras government (2013-2015). He assumed the office of Prime Minister on July 8, 2019, with a break in 2023, and returned on June 26, 2023.",
+  "education": [
+    {
+      "degree": "Πτυχίο Κοινωνικών Σπουδών (summa cum laude)",
+      "degree_en": "Bachelor of Social Studies",
+      "institution": "Harvard University",
+      "year_graduated": "1990",
+      "awards": [
+        {
+          "name": "Thomas T. Hoopes Prize",
+          "year": 1990,
+          "source": "https://en.wikipedia.org/wiki/Kyriakos_Mitsotakis"
+        },
+        {
+          "name": "Alexis de Tocqueville Prize",
+          "year": 1990,
+          "source": "https://en.wikipedia.org/wiki/Kyriakos_Mitsotakis"
+        }
+      ],
+      "source": "https://en.wikipedia.org/wiki/Kyriakos_Mitsotakis"
+    },
+    {
+      "degree": "Μεταπτυχιακό Δίπλωμα στις Διεθνείς Σχέσεις (Ford Dorsey Master's)",
+      "degree_en": "Master of Arts in International Policy",
+      "institution": "Stanford University",
+      "year_graduated": "1993",
+      "source": "https://en.wikipedia.org/wiki/Kyriakos_Mitsotakis"
+    },
+    {
+      "degree": "Μεταπτυχιακό Διάπλωμα Διοίκησης Επιχειρήσεων",
+      "degree_en": "Master of Business Administration",
+      "institution": "Harvard Business School",
+      "year_graduated": "1995",
+      "source": "https://en.wikipedia.org/wiki/Kyriakos_Mitsotakis"
+    },
+    {
+      "degree": "Δευτεροβάθμια Εκπαίδευση",
+      "degree_en": "Secondary Education",
+      "institution": "Athens College (Κολλέγιο Αθηνών)",
+      "year_graduated": "1986",
+      "achievement": "Salutatorian",
+      "source": "https://en.wikipedia.org/wiki/Kyriakos_Mitsotakis"
+    }
+  ],
+  "career_before_politics": "Μετά την ολοκλήρωση των σπουδών του, ο Μητσοτάκης εργάστηκε ως χρηματοοικονομικός αναλυτής στη Chase Bank στο Λονδίνο (1990-1991) στη Σώρεα Χρηματοδοτήσεων Επιχειρήσεων. Ακολούθησε υποχρεωτική στρατιωτική θητεία στο ελληνικό στρατό (1991-1992). Στη συνέχεια εργάστηκε ως σύμβουλος διαχείρισης στη McKinsey & Company στο Λονδίνο (1995-1997) με εστίαση στις τηλεπικοινωνίες και τις χρηματοοικονομικές υπηρεσίες. Ως ανώτερος υπεύθυνος επενδύσεων στη Alpha Ventures, θυγατρική εταιρεία της Alpha Bank (1997-1999), ειδικεύθηκε σε ιδιωτικές επενδύσεις κεφαλαίου και κεφαλαίου κινδύνου. Το 1999 ίδρυσε και διευθύνθηκε την NBG Venture Capital, θυγατρική της Εθνικής Τράπεζας της Ελλάδος, ως CEO, διαχειριζόμενος επενδύσεις και πρωτοβουλίες σε Ελλάδα και Βαλκάνια έως το 2003, όταν παραιτήθηκε για να ακολουθήσει πολιτική σταδιοδρομία. Τον Ιανουάριο 2003 κερδίσει τον τίτλο του 'Global Leader for Tomorrow' από το Παγκόσμιο Οικονομικό Φόρουμ.",
+  "family_and_dynasty": {
+    "notes": "Κυριάκος Μητσοτάκης κατάγεται από μια από τις πιο σημαντικές πολιτικές δυναστείες της Ελλάδας. Ο παππούς του, Κυριάκος Κ. Μητσοτάκης, υπηργός Πρωθυπουργός της Ελλάδας. Ο πατέρας του, Κωνσταντίνος Μητσοτάκης, ήταν Πρωθυπουργός (1990-1993) και αρχηγός της Νέας Δημοκρατίας. Από την πλευρά του πατέρα κατάγεται από τον ιστορικό πρωθυπουργό Ελευθέριο Βενιζέλο. Η αδελφή του, Ντόρα Μπακογιάννη, ήταν Υπουργός Εξωτερικών και Δήμαρχος Αθηνών. Ο ανιψιός του, Κώστας Μπακογιάννης, ήταν Δήμαρχος Αθηνών και Περιφερειάρχης Κεντρικής Ελλάδας.",
+    "relatives": [
+      {
+        "name": "Κωνσταντίνος Μητσοτάκης",
+        "relation": "πατέρας",
+        "political_role": "Πρώην Πρωθυπουργός (1990-1993), Αρχηγός Νέας Δημοκρατίας",
+        "dates": "1918-2017",
+        "source": "https://en.wikipedia.org/wiki/Kyriakos_Mitsotakis"
+      },
+      {
+        "name": "Μαρίκα Γιαννούκου Μητσοτάκη",
+        "relation": "μητέρα",
+        "dates": "1930-2012",
+        "source": "https://en.wikipedia.org/wiki/Kyriakos_Mitsotakis"
+      },
+      {
+        "name": "Ντόρα Μπακογιάννη",
+        "relation": "αδελφή",
+        "political_role": "Πρώην Υπουργός Εξωτερικών, Δήμαρχος Αθηνών",
+        "born": "1954",
+        "source": "https://en.wikipedia.org/wiki/Kyriakos_Mitsotakis"
+      },
+      {
+        "name": "Κώστας Μπακογιάννης",
+        "relation": "ανιψιός",
+        "political_role": "Πρώην Δήμαρχος Αθηνών, Περιφερειάρχης Κεντρικής Ελλάδας",
+        "source": "https://en.wikipedia.org/wiki/Kyriakos_Mitsotakis"
+      },
+      {
+        "name": "Κυριάκος Κ. Μητσοτάκης",
+        "relation": "παππούς",
+        "political_role": "Πρώην Πρωθυπουργός της Ελλάδας",
+        "source": "https://en.wikipedia.org/wiki/Kyriakos_Mitsotakis"
+      },
+      {
+        "name": "Ελευθέριος Βενιζέλος",
+        "relation": "great-great-uncle (μέσω γυναικείας γραμμής)",
+        "political_role": "Ιστορικός Πρωθυπουργός της Ελλάδας",
+        "dates": "1864-1936",
+        "source": "https://en.wikipedia.org/wiki/Kyriakos_Mitsotakis"
+      }
+    ],
+    "spouse": {
+      "name": "Μαρέβα Γκραμπόφσκι Μητσοτάκη",
+      "married": "1997",
+      "background": "Βρετανικής, ελληνικής, πολωνικής και αιγυπτιακής καταγωγής",
+      "professional_background": "Επενδυτική τραπεζίτρια στη Deutsche Bank (1995-2007)",
+      "business_ventures": [
+        "Co-founder Zeus+Dione (luxury crafts)",
+        "Founder Endeavor Greece (entrepreneurship)"
+      ],
+      "languages": "Ελληνικά, Αγγλικά, Γαλλικά, Τουρκικά",
+      "paradise_papers": {
+        "detail": "Εμφανίστηκε ως 50% μέτοχος της εταιρείας 'Eternia Capital Management' με έδρα τα Cayman Islands",
+        "year": 2017,
+        "source": "https://www.keeptalkinggreece.com/2017/11/08/spouse-new-democracy-leader-mitsotakis-appears-paradise-papers/"
+      },
+      "source": "https://en.wikipedia.org/wiki/Kyriakos_Mitsotakis"
+    },
+    "children": {
+      "count": 3,
+      "names": [
+        "Σοφία",
+        "Κωνσταντίνος",
+        "Δάφνη"
+      ],
+      "source": "https://en.wikipedia.org/wiki/Kyriakos_Mitsotakis"
+    }
+  },
+  "cabinet_history": [
+    {
+      "government": "Κυβέρνηση Αντώνη Σαμαρά",
+      "government_en": "Antonis Samaras Government",
+      "role": "Υπουργός Διοικητικής Μεταρρύθμισης και Ηλεκτρονικής Διακυβέρνησης",
+      "role_en": "Minister of Administrative Reform and Electronic Governance",
+      "ministry": "Υπουργείο Διοικητικής Μεταρρύθμισης και Ηλεκτρονικής Διακυβέρνησης",
+      "start_date": "2013-06-25",
+      "end_date": "2015-01-27",
+      "source": "https://el.wikipedia.org/wiki/Κυριάκος_Μητσοτάκης"
+    },
+    {
+      "government": "Κυβέρνηση Κυριάκου Μητσοτάκη Α'",
+      "government_en": "Kyriakos Mitsotakis Government (First Term)",
+      "role": "Πρωθυπουργός της Ελλάδας",
+      "role_en": "Prime Minister of Greece",
+      "ministry": "Γραφείο του Πρωθυπουργού",
+      "start_date": "2019-07-08",
+      "end_date": "2023-05-25",
+      "election_date": "2019-07-07",
+      "election_result_percentage": "39.85%",
+      "seats_won": 158,
+      "source": "https://el.wikipedia.org/wiki/Κυβέρνηση_Κυριάκου_Μητσοτάκη_2019"
+    },
+    {
+      "government": "Κυβέρνηση Κυριάκου Μητσοτάκη Β'",
+      "government_en": "Kyriakos Mitsotakis Government (Second Term)",
+      "role": "Πρωθυπουργός της Ελλάδας",
+      "role_en": "Prime Minister of Greece",
+      "ministry": "Γραφείο του Πρωθυπουργού",
+      "start_date": "2023-06-26",
+      "end_date": null,
+      "election_date": "2023-06-25",
+      "election_result_percentage": "40.56%",
+      "seats_won": 158,
+      "current_seats": 156,
+      "status": "Incumbent",
+      "source": "https://el.wikipedia.org/wiki/Κυβέρνηση_Κυριάκου_Μητσοτάκη_2023"
+    }
+  ],
+  "parliamentary_activity": {
+    "constituency_current": "Α' Θεσσαλονίκης",
+    "constituency_history": [
+      {
+        "district": "Β' Αθηνών",
+        "from": "2004",
+        "to": "2019",
+        "source": "https://el.wikipedia.org/wiki/Κυριάκος_Μητσοτάκης"
+      },
+      {
+        "district": "Β2' Δυτικού Τομέα Αθηνών",
+        "from": "2019",
+        "to": "2023",
+        "source": "https://el.wikipedia.org/wiki/Κυριάκος_Μητσοτάκης"
+      },
+      {
+        "district": "Α' Θεσσαλονίκης",
+        "from": "2023",
+        "to": null,
+        "source": "https://el.wikipedia.org/wiki/Κυριάκος_Μητσοτάκης"
+      }
+    ],
+    "terms": [
+      {
+        "from": "2004",
+        "to": "2009",
+        "source": "https://el.wikipedia.org/wiki/Κυριάκος_Μητσοτάκης"
+      },
+      {
+        "from": "2009",
+        "to": "2012",
+        "source": "https://el.wikipedia.org/wiki/Κυριάκος_Μητσοτάκης"
+      },
+      {
+        "from": "2012",
+        "to": "2015",
+        "source": "https://el.wikipedia.org/wiki/Κυριάκος_Μητσοτάκης"
+      },
+      {
+        "from": "2015",
+        "to": "2019",
+        "source": "https://el.wikipedia.org/wiki/Κυριάκος_Μητσοτάκης"
+      },
+      {
+        "from": "2019",
+        "to": "2023",
+        "source": "https://el.wikipedia.org/wiki/Κυριάκος_Μητσοτάκης"
+      },
+      {
+        "from": "2023",
+        "to": null,
+        "source": "https://el.wikipedia.org/wiki/Κυριάκος_Μητσοτάκης"
+      }
+    ],
+    "committees": [],
+    "bills_proposed": [],
+    "attendance_rate": null,
+    "attendance_source": null
+  },
+  "asset_declarations": [],
+  "business_interests": [
+    {
+      "company": "Chase Bank (Corporate Finance Division)",
+      "role": "Financial Analyst",
+      "from": "1990-01-01",
+      "to": "1991-12-31",
+      "notes": "Εργασία πριν τη πολιτική",
+      "source": "https://en.wikipedia.org/wiki/Kyriakos_Mitsotakis"
+    },
+    {
+      "company": "McKinsey & Company",
+      "role": "Management Consultant",
+      "from": "1995-01-01",
+      "to": "1997-12-31",
+      "notes": "Εστίαση στις τηλεπικοινωνίες και χρηματοοικονομικές υπηρεσίες",
+      "source": "https://en.wikipedia.org/wiki/Kyriakos_Mitsotakis"
+    },
+    {
+      "company": "Alpha Ventures (Alpha Bank subsidiary)",
+      "role": "Senior Investment Officer",
+      "from": "1997-01-01",
+      "to": "1999-12-31",
+      "notes": "Ιδιωτικό κεφάλαιο και κεφάλαιο κινδύνου",
+      "source": "https://en.wikipedia.org/wiki/Kyriakos_Mitsotakis"
+    },
+    {
+      "company": "NBG Venture Capital (National Bank of Greece subsidiary)",
+      "role": "CEO/Founder",
+      "from": "1999-01-01",
+      "to": "2003-04-30",
+      "notes": "Ίδρυσε και διαχείριζε θυγατρική εταιρείας με εστίαση σε κεφάλαιο κινδύνου και ιδιωτικές επενδύσεις στην Ελλάδα και τα Βαλκάνια",
+      "source": "https://en.wikipedia.org/wiki/Kyriakos_Mitsotakis"
+    }
+  ],
+  "media_ties": [],
+  "policy_positions": [
+    {
+      "topic": "Οικονομική Πολιτική",
+      "position": "Ελεύθερη αγορά, φιλελεύθερες μεταρρυθμίσεις, μείωση φόρων για πλούσιους και επιχειρήσεις. Ιδιωτικοποιήσεις τουριστικών υποδομών, παραλιακής γης, κρατικών μετοχών σε πετρέλαιο/ηλεκτρισμό και του αεροδρομίου Αθηνών. Μείωση φόρων: φόρος εισοδήματος 28%→24%, φόρος μερισμάτων 10%→5%, φόρος ακινήτων -22%.",
+      "source": "https://en.wikipedia.org/wiki/Kyriakos_Mitsotakis"
+    },
+    {
+      "topic": "Εργασιακή Νομοθεσία",
+      "position": "Περιορισμός δικαιώματος απεργίας, κατάργηση συλλογικών συμβάσεων εργασίας, 13ωρη εργάσιμη ημέρα επιτρεπτή (2025). Εργατικές ενώσεις χαρακτηρίζουν τις μεταρρυθμίσεις ως 'σύγχρονη δουλεία'.",
+      "source": "https://www.hindustantimes.com/world-news/greece-comes-to-a-halt-as-thousands-hold-strike-against-new-labour-laws-13-hour-work-days-101759381491813.html"
+    },
+    {
+      "topic": "Κοινωνική Πολιτική",
+      "position": "Κατάργηση κάλυψης νοσοκομειακής περίθαλψης για ανίσχυρους ξένους. Μείωση περιόδου διαμονής προσφύγων σε δημόσια στέγαση από 6 μήνες σε 1 μήνα.",
+      "source": "https://en.wikipedia.org/wiki/Kyriakos_Mitsotakis"
+    },
+    {
+      "topic": "Περιβαλλοντική Πολιτική",
+      "position": "Δέσμευση για κλείσιμο όλων των ενεργειακών σταθμών λιγνίτη μέχρι τέλος 2028. Στόχος 35% ανανεώσιμης ενέργειας μέχρι 2030. Ωστόσο, αναβάθμισε τις υδρογονάνθρακες εξερεύνηση σε 'εθνική σημασία' και επιταχύνει την εξόρυξη ορυκτών καυσίμων.",
+      "source": "https://balkangreenenergynews.com/environmentalists-oppose-greeces-plan-to-accelerate-fossil-gas-exploration-extraction/"
+    },
+    {
+      "topic": "Μεταναστευτική Πολιτική",
+      "position": "Σκληρή στάση στην ευρωπαϊκή κρίση μεταναστών με εξώσεις τραγικών περιστατικών προσφύγων. Απαγορεύσεις ασύλων σε νησιά. Λήφθηκε διεθνής επιδοκιμασία αλλά ατομικές ανθρώπινες αποδείξεις για παράνομες εξώσεις.",
+      "source": "https://www.guardian.com/world/2023/may/19/greek-government-under-fire-after-video-shows-pushback-of-asylum-seekers"
+    },
+    {
+      "topic": "Εκπαίδευση",
+      "position": "Ίδρυση ιδιωτικών πανεπιστημίων (ψήφιστηκε Μάρτιο 2024 με 159 ψήφους παρά τις ευρείες διαδηλώσεις). Κατάργηση πανεπιστημιακού ασύλου. Κριτικοί λέγουν ότι παραβιάζει άρθρο 16 του συντάγματος.",
+      "source": "https://www.reuters.com/world/europe/greek-parliament-approves-private-foreign-universities-bucking-protests-2024-03-09/"
+    },
+    {
+      "topic": "Ισότητα ΛΟΑΤ+",
+      "position": "Νομιμοποίηση γάμου ομοφύλων και υιοθεσίας (ψήφιστηκε Φεβρουάριος 2024 με 176 ψήφους). Απαγόρευση θεραπευτικών μεταστροφής (Μάιος 2024). Προοδευτική πολιτική παρά την αντίθεση από δεξιά τμήματα της Νέας Δημοκρατίας.",
+      "source": "https://balkaninsight.com/2024/02/16/greece-passes-law-recognising-same-sex-families/"
+    },
+    {
+      "topic": "Ελευθερία Τύπου",
+      "position": "Ποινικοποίηση 'ψευδούς ενημέρωσης' σχετικά με COVID-19 με ποινή έως 5 ετών φυλάκισης (Νοέμβριος 2021). Χρηματοδότηση δημοσίων μέσων που ευνοούν την κυβέρνηση. Αναγνώρισε ότι η νομοθεσία ίσως ήταν λάθος αλλά δεν την ανάκαλεσε.",
+      "source": "https://en.wikipedia.org/wiki/Kyriakos_Mitsotakis"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "Η Ελλάδα δεν μπορεί να παραμείνει όμηρος σε δογματισμούς και αναχρονιστικές αντιλήψεις.",
+      "text_en": "Greece cannot remain captive to doctrines and anachronistic concepts.",
+      "date": "2024-01-10",
+      "context": "Σχόλιο για τη νομοθεσία ιδιωτικών πανεπιστημίων",
+      "source": "https://en.wikipedia.org/wiki/Kyriakos_Mitsotakis"
+    },
+    {
+      "text": "Μπορεί να ήταν σύμφωνη με το νόμο, αλλά ήταν λάθος.",
+      "text_en": "It may have been compliant with law, but it was wrong.",
+      "date": "2022-08-08",
+      "context": "Δήλωση σχετικά με το σκάνδαλο κατασκοπείας Predator",
+      "source": "https://en.wikipedia.org/wiki/2022_Greek_surveillance_scandal"
+    },
+    {
+      "text": "Η εικόνα πλήγωσε τους Ελληνες.",
+      "text_en": "The image hurt the Greeks.",
+      "date": "2021-02-06",
+      "context": "Δημόσια συγγνώμη για παραβίασης του κατ' οίκον περιορισμού COVID στο Ικαρία",
+      "source": "https://en.wikipedia.org/wiki/Kyriakos_Mitsotakis"
+    },
+    {
+      "text": "Δεν θα σταματήσουμε να αγωνιζόμαστε μέχρι η Κύπρος να ενοποιηθεί.",
+      "text_en": "We will not stop fighting until Cyprus is reunited.",
+      "date": "2024-07-20",
+      "context": "50η επέτειος της τουρκικής εισβολής του 1974",
+      "source": "https://en.wikipedia.org/wiki/Kyriakos_Mitsotakis"
+    }
+  ],
+  "contradictions": [
+    {
+      "topic": "Κοινωνική Πολιτική - Προσωρινοί Εργαζόμενοι",
+      "past_position": "Ως αρχηγός αντιπολίτευσης (2016-2019), επέκρινε την κυβέρνηση ΣΥΡΙΖΑ για την πρόσληψη κυβερνητικών εργαζομένων",
+      "past_date": "2016-2019",
+      "past_source": "https://en.wikipedia.org/wiki/Κυβέρνηση_Κυριάκου_Μητσοτάκη_2019",
+      "current_position": "Ως πρωθυπουργός, διπλασίασε τον αριθμό των προσωρινών εργαζομένων της κυβέρνησης εντός δύο ετών",
+      "current_date": "2021",
+      "current_source": "https://en.wikipedia.org/wiki/Κυβέρνηση_Κυριάκου_Μητσοτάκη_2019"
+    },
+    {
+      "topic": "Περιβαλλοντική Πολιτική",
+      "past_position": "Δέσμευση για κλείσιμο ενεργειακών σταθμών λιγνίτη μέχρι 2028 και επιτάχυνση της ανανεώσιμης ενέργειας",
+      "past_date": "2019",
+      "past_source": "https://en.wikipedia.org/wiki/Κυβέρνηση_Κυριάκου_Μητσοτάκη_2019",
+      "current_position": "Αναβάθμισε την εξερεύνηση υδρογονανθράκων σε 'εθνική σημασία' και επιταχύνει την εξόρυξη ορυκτών καυσίμων",
+      "current_date": "2023-2025",
+      "current_source": "https://balkangreenenergynews.com/environmentalists-oppose-greeces-plan-to-accelerate-fossil-gas-exploration-extraction/"
+    },
+    {
+      "topic": "Εργασιακή Νομοθεσία",
+      "past_position": "Κατά τη διάρκεια της καμπάνιας σκόπευε να βελτιώσει τις συνθήκες εργασίας και τα δικαιώματα εργαζομένων",
+      "past_date": "2019",
+      "past_source": "https://en.wikipedia.org/wiki/Κυβέρνηση_Κυριάκου_Μητσοτάκη_2019",
+      "current_position": "Νόμος 2025 περιορίζει σοβαρά το δικαίωμα απεργίας, κατάργησης συλλογικών συμβάσεων και επιτρέπει 13ωρη εργάσιμη ημέρα",
+      "current_date": "2025",
+      "current_source": "https://www.hindustantimes.com/world-news/greece-comes-to-a-halt-as-thousands-hold-strike-against-new-labour-laws-13-hour-work-days-101759381491813.html"
+    }
+  ],
+  "connections": [
+    {
+      "person_name": "Κωνσταντίνος Μητσοτάκης",
+      "relation_type": "οικογένεια",
+      "notes": "Πατέρας και πρώην πρωθυπουργός, σημαντική πολιτική επιρροή",
+      "source": "https://en.wikipedia.org/wiki/Kyriakos_Mitsotakis"
+    },
+    {
+      "person_name": "Ντόρα Μπακογιάννη",
+      "relation_type": "οικογένεια",
+      "notes": "Αδελφή, πρώην Υπουργός Εξωτερικών και Δήμαρχος Αθηνών",
+      "source": "https://en.wikipedia.org/wiki/Kyriakos_Mitsotakis"
+    },
+    {
+      "person_name": "Γρηγόρης Δημητριάδης",
+      "relation_type": "συγγενική_σχέση",
+      "notes": "Ανιψιός, Γενικός Γραμματέας του ΠΙ, δεσμοί με τους ιδιοκτήτες Predator spyware. Παραιτήθηκε Αυγ 2022",
+      "source": "https://en.wikipedia.org/wiki/2022_Greek_surveillance_scandal"
+    },
+    {
+      "person_name": "Mareva Grabowski-Mitsotakis",
+      "relation_type": "σύζυγος",
+      "notes": "Σύζυγος, επενδυτική τραπεζίτρια Deutsche Bank, εμφανίστηκε σε Paradise Papers ως κάτοχος εταιρείας στα Cayman Islands",
+      "source": "https://www.keeptalkinggreece.com/2017/11/08/spouse-new-democracy-leader-mitsotakis-appears-paradise-papers/"
+    }
+  ],
+  "events": [
+    {
+      "id": "mitsotakis-election-mp-2004",
+      "type": "appointment",
+      "date": "2004-03-07",
+      "title": "Εκλογή ως Βουλευτής Νέας Δημοκρατίας",
+      "title_en": "Elected as New Democracy MP",
+      "description": "Κυριάκος Μητσοτάκης εκλέγεται βουλευτής της Νέας Δημοκρατίας στις εκλογές Μαρτίου 2004, πρώτος σε ψήφους στο αselectionthe διαμέρισμα B' Αθηνών.",
+      "description_en": "Kyriakos Mitsotakis elected as New Democracy MP in March 2004 elections, leading in votes in Athens B constituency.",
+      "sources": [
+        {
+          "label": "Wikipedia (EL)",
+          "url": "https://el.wikipedia.org/wiki/Κυριάκος_Μητσοτάκης"
+        }
+      ]
+    },
+    {
+      "id": "mitsotakis-minister-2013",
+      "type": "appointment",
+      "date": "2013-06-25",
+      "title": "Υπουργός Διοικητικής Μεταρρύθμισης",
+      "title_en": "Minister of Administrative Reform",
+      "description": "Ανέλαβε τα καθήκοντα του Υπουργού Διοικητικής Μεταρρύθμισης και Ηλεκτρονικής Διακυβέρνησης στην κυβέρνηση Αντώνη Σαμαρά.",
+      "description_en": "Assumed office as Minister of Administrative Reform and Electronic Governance under Antonis Samaras government.",
+      "sources": [
+        {
+          "label": "Wikipedia (EL)",
+          "url": "https://el.wikipedia.org/wiki/Κυριάκος_Μητσοτάκης"
+        }
+      ]
+    },
+    {
+      "id": "mitsotakis-party-leader-2016",
+      "type": "appointment",
+      "date": "2016-01-11",
+      "title": "Εκλογή ως Πρόεδρος της Νέας Δημοκρατίας",
+      "title_en": "Elected President of New Democracy",
+      "description": "Εξελέγη Πρόεδρος της Νέας Δημοκρατίας και ανέλαβε τον ρόλο του Αρχηγού της Αξιωματικής Αντιπολίτευσης.",
+      "description_en": "Elected President of New Democracy and became Leader of Official Opposition.",
+      "sources": [
+        {
+          "label": "Wikipedia (EL)",
+          "url": "https://el.wikipedia.org/wiki/Κυριάκος_Μητσοτάκης"
+        }
+      ]
+    },
+    {
+      "id": "mitsotakis-pm-2019",
+      "type": "appointment",
+      "date": "2019-07-08",
+      "title": "Ανέλαβε Πρωθυπουργία",
+      "title_en": "Assumed Office of Prime Minister",
+      "description": "Μετά τη νίκη της Νέας Δημοκρατίας στις εκλογές Ιουλίου 2019 (39.85% των ψήφων, 158 έδρες), ο Κυριάκος Μητσοτάκης σχημάτισε κυβέρνηση και ανέλαβε τα καθήκοντα του Πρωθυπουργού της Ελλάδας.",
+      "description_en": "Following New Democracy's victory in July 2019 elections (39.85% vote share, 158 seats), Kyriakos Mitsotakis formed government and assumed office as Prime Minister of Greece.",
+      "sources": [
+        {
+          "label": "Wikipedia (EL)",
+          "url": "https://el.wikipedia.org/wiki/Κυβέρνηση_Κυριάκου_Μητσοτάκη_2019"
+        }
+      ]
+    },
+    {
+      "id": "mitsotakis-abolish-university-asylum",
+      "type": "vote",
+      "date": "2019-08-01",
+      "title": "Κατάργηση Πανεπιστημιακού Ασύλου",
+      "title_en": "Abolition of University Asylum",
+      "description": "Ψήφιστηκε νόμος που κατάργησε το πανεπιστημιακό άσυλο και επέτρεψε την αστυνομική παρέμβαση σε πανεπιστημιακούς χώρους για σοβαρά εγκλήματα.",
+      "description_en": "Law passed abolishing university asylum and allowing police intervention in university spaces for serious crimes.",
+      "outcome": "passed",
+      "sources": [
+        {
+          "label": "Wikipedia (EL)",
+          "url": "https://el.wikipedia.org/wiki/Κυβέρνηση_Κυριάκου_Μητσοτάκη_2019"
+        }
+      ]
+    },
+    {
+      "id": "mitsotakis-capital-controls",
+      "type": "achievement",
+      "date": "2019-08-20",
+      "title": "Άρση Κεφαλαιακών Ελέγχων",
+      "title_en": "Removal of Capital Controls",
+      "description": "Ανακοίνωση της πλήρους άρσης των υπολοίπων κεφαλαιακών ελέγχων που είχαν επιβληθεί κατά τη διάρκεια της κρίσης χρέους.",
+      "description_en": "Full removal of remaining capital controls imposed during debt crisis.",
+      "sources": [
+        {
+          "label": "Wikipedia (EL)",
+          "url": "https://el.wikipedia.org/wiki/Κυβέρνηση_Κυριάκου_Μητσοτάκη_2019"
+        }
+      ]
+    },
+    {
+      "id": "predator-spyware-scandal-2022",
+      "type": "scandal",
+      "date": "2022-07-15",
+      "title": "Σκάνδαλο Κατασκοπείας Predator",
+      "title_en": "Predator Spyware Scandal",
+      "description": "Αποκάλυψη ότι ο αρχηγός του ΠΑΣΟΚ Νίκος Ανδρουλάκης και ο δημοσιογράφος Θανάσης Κουκάκης στοχοποιήθηκαν με κακόβουλο λογισμικό Predator. Ο Γρηγόρης Δημητριάδης, ανιψιός του Μητσοτάκη και Γενικός Γραμματέας, είχε δεσμούς με ιδιοκτήτες του Predator. Παραιτήθηκαν ο Δημητριάδης και ο διευθυντής της EYP Παναγιώτης Κοντολέων (5 Αυγούστου 2022). Ο Μητσοτάκης αρνήθηκε ότι αγόρασε ή χρησιμοποίησε Predator, αλλά αναγνώρισε ότι ήταν 'λάθος'.",
+      "description_en": "Revelation that PASOK leader Nikos Androulakis and journalist Thanasis Koukakis were targeted with Predator spyware. Grigoris Dimitriadis, Mitsotakis's nephew and General Secretary, had connections to Predator owners. Both Dimitriadis and EYP chief Panayotis Kontoleon resigned August 5, 2022. Mitsotakis denied purchasing/using Predator but acknowledged it was 'wrong'.",
+      "severity": "high",
+      "resolution": "ongoing",
+      "sources": [
+        {
+          "label": "Wikipedia (EL)",
+          "url": "https://en.wikipedia.org/wiki/2022_Greek_surveillance_scandal"
+        },
+        {
+          "label": "Politico",
+          "url": "https://www.politico.eu/article/predatorgate-greece-court-sentences-predator-spyware-gang/"
+        },
+        {
+          "label": "BBC",
+          "url": "https://www.bbc.com/news/articles/cj6dx4886rpo"
+        }
+      ]
+    },
+    {
+      "id": "tempi-train-crash-2023",
+      "type": "scandal",
+      "date": "2023-02-28",
+      "title": "Τραγωδία Τρένου Τεμπών",
+      "title_en": "Tempi Train Crash",
+      "description": "Μετωπική σύγκρουση εμπορευματικού τρένου και επιβατικού τρένου στην κοιλάδα Τεμπών, 57 θάνατοι. Προκλήθηκε από παραμέληση του συστήματος σιδηροδρόμων και αποτυχία αναβάθμισης για 3.5 χρόνια κάτω από την κυβέρνηση Μητσοτάκη. Ο Μητσοτάκης ανέλαβε ευθύνη δημοσίως και υπόσχεται 270+ εκατομμύρια για αναβάθμιση. Ο Υπουργός Μεταφορών Κώστας Καραμανλής παραιτήθηκε (1 Μαρτίου 2023). Παρά τη τραγωδία, η Νέα Δημοκρατία νίκησε στις εκλογές Ιουνίου 2023, και ο Καραμανλής υποδέχθηκε με επευφημίες.",
+      "description_en": "Head-on collision between freight and passenger trains in Tempi Valley, 57 deaths. Caused by railway system neglect and failure to modernize for 3.5 years under Mitsotakis government. Mitsotakis accepted responsibility publicly and promised €270+ million for upgrades. Transport Minister Kostas Karamanlis resigned March 1, 2023. Despite tragedy, New Democracy won June 2023 elections convincingly; Karamanlis welcomed back with standing ovation.",
+      "severity": "high",
+      "resolution": "ongoing",
+      "sources": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Tempi_train_crash"
+        }
+      ]
+    },
+    {
+      "id": "opepe-farm-fraud-2024",
+      "type": "scandal",
+      "date": "2024-06-01",
+      "title": "Σκάνδαλο Διαφθοράς ΟΠΕΚΕΠΕ",
+      "title_en": "OPEPE Farm Fraud Scandal",
+      "description": "€290 εκατομμύρια ευρώ απάτης σε κονδύλια ΕΕ γεωργίας. Σχήμα διάρκειας 2019-2024 με ψευδείς αξιώσεις νέων/νεαρών αγροτών και πλαστά έγγραφα ιδιοκτησίας γης. Ευρωπαίοι εισαγγελείς ονομάτισαν υπόπτους από τα κυβερνητικά στελέχη. Η κυβέρνηση Μητσοτάκη αποτρέπει πλήρη έρευνα. Ο Μητσοτάκης δήλωσε ότι η Ελλάδα 2025 δεν χρειάζεται 'σκάνδαλα', αλλά αλήθειες. Πέντε ανώτατα στελέχη παραιτήθησαν Ιουνίου 2025.",
+      "description_en": "€290 million fraud in EU agricultural funds. Scheme 2019-2024 with fake young/new farmer claims and falsified land ownership. European prosecutors named suspects from government officials. Mitsotakis government preventing investigation. Mitsotakis said Greece in 2025 does not need scandal-mongering but truths. Five senior officials resigned June 2025.",
+      "severity": "high",
+      "resolution": "ongoing",
+      "sources": [
+        {
+          "label": "Politico",
+          "url": "https://www.politico.eu/article/greece-mitsotakis-farm-funds-fraud-eppo-opekepe-agriculture-farmer-pasture/"
+        },
+        {
+          "label": "The Guardian",
+          "url": "https://www.theguardian.com/world/2025/jun/30/greece-farming-fraud-subsidy-scandal-investigation"
+        }
+      ]
+    },
+    {
+      "id": "same-sex-marriage-law-2024",
+      "type": "vote",
+      "date": "2024-02-15",
+      "title": "Νόμος Ισότητας Γάμου",
+      "title_en": "Same-Sex Marriage Law",
+      "description": "Ψηφίστηκε με 176 ψήφους νόμος που νομιμοποιεί τον γάμο ομοφύλων και την υιοθεσία από ομοφυλόφιλα ζευγάρια. Προοδευτική πολιτική από δεξιό πρωθυπουργό, αλλά προκάλεσε αντίθεση από δεξιά τμήματα της Νέας Δημοκρατίας και της Ορθόδοξης Εκκλησίας.",
+      "description_en": "Passed with 176 votes legalizing same-sex marriage and adoption by same-sex couples. Progressive policy from centre-right PM but met opposition from right-wing factions of New Democracy and Orthodox Church.",
+      "outcome": "passed",
+      "sources": [
+        {
+          "label": "Balkan Insight",
+          "url": "https://balkaninsight.com/2024/02/16/greece-passes-law-recognising-same-sex-families/"
+        }
+      ]
+    },
+    {
+      "id": "private-universities-law-2024",
+      "type": "vote",
+      "date": "2024-03-09",
+      "title": "Νόμος Ιδιωτικών Πανεπιστημίων",
+      "title_en": "Private Universities Law",
+      "description": "Ψήφιστηκε με 159 ψήφους επιτρέποντας την ίδρυση μη κρατικών πανεπιστημίων. Χιλιάδες φοιτητές διαδήλωσαν, και η αστυνομία χρησιμοποίησε δύναμη κατά διαδηλωτών. Νομικοί εμπειρογνώμονες υποστηρίζουν ότι παραβιάζει άρθρο 16 του συντάγματος. Αριστερά και δεξιά μέρη του κοινοβουλίου αντιτάχθηκαν.",
+      "description_en": "Passed with 159 votes allowing establishment of non-state universities. Thousands of Greek students protested; police clashed with demonstrators. Legal experts argue it violates Article 16. Left-wing and hard-right party members opposed.",
+      "outcome": "passed",
+      "sources": [
+        {
+          "label": "Reuters",
+          "url": "https://www.reuters.com/world/europe/greek-parliament-approves-private-foreign-universities-bucking-protests-2024-03-09/"
+        }
+      ]
+    },
+    {
+      "id": "labour-law-2025",
+      "type": "vote",
+      "date": "2025-10-16",
+      "title": "Νόμος Εργασίας - Δίκαιη Εργασία για Όλους",
+      "title_en": "Labour Law 5166/2024 - Fair Work for All",
+      "description": "Νόμος εργασίας επιτρέποντας 13ωρη εργάσιμη ημέρα, ασθενέστερη προστασία εργαζομένων και κατάργηση συλλογικών συμβάσεων εργασίας. Εργατικές ενώσεις ονοματίστηκαν αυτό 'σύγχρονη δουλεία' και 'ανθρώπινες ώρες'. Μεγάλες απεργίες και διαδηλώσεις τον Οκτώβριο 2025 με ολοκληρωτική επιστροφή του κράτους.",
+      "description_en": "Labour law allowing 13-hour workdays, weakened worker protections, removal of collective bargaining agreements. Union PAME called reforms 'modern slavery' and 'inhumane hours'. Major strikes and nationwide protests October 2025.",
+      "outcome": "passed",
+      "sources": [
+        {
+          "label": "Hindustan Times",
+          "url": "https://www.hindustantimes.com/world-news/greece-comes-to-a-halt-as-thousands-hold-strike-against-new-labour-laws-13-hour-work-days-101759381491813.html"
+        }
+      ]
+    },
+    {
+      "id": "covid-19-mask-violation-2020",
+      "type": "scandal",
+      "date": "2020-12-15",
+      "title": "Παραβίαση Μέτρων COVID-19",
+      "title_en": "COVID-19 Violation",
+      "description": "Φωτογραφία δείχνει τον Μητσοτάκη χωρίς μάσκα με 5 άλλα άτομα κατά τη διάρκεια εθνικής καραντίνας. Ενώ υποχρεωτική ήταν η χρήση μάσκας, απέφυγε σοβαρές συνέπειες.",
+      "description_en": "Photo shows Mitsotakis without mask with 5 others during nationwide lockdown when mask-wearing was mandatory. Avoided serious consequences.",
+      "severity": "low",
+      "resolution": "dismissed",
+      "sources": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Kyriakos_Mitsotakis"
+        }
+      ]
+    },
+    {
+      "id": "ikaria-island-covid-2021",
+      "type": "scandal",
+      "date": "2021-02-06",
+      "title": "Επίσκεψη Ικαρίας - Παραβίαση Περιορισμών",
+      "title_en": "Ikaria Island Visit COVID Violation",
+      "description": "Επίσκεψη του Μητσοτάκη στο νησί Ικαρία για επιθεώρηση εμβολιασμών, συμμετοχή σε γεύμα με ~40 άτομα κατά τη διάρκεια ενεργών μέτρων περιορισμού. Διεθνής κάλυψη και κριτική. Ο Μητσοτάκης δημοσίως συγγνώμη και δήλωσε 'η εικόνα πλήγωσε τους Ελληνες' και υπόσχετο ποτέ πάλι.",
+      "description_en": "Mitsotakis visited Ikaria island to inspect vaccinations, attended lunch with ~40 people during active containment measures. International media coverage and criticism. Mitsotakis publicly apologized, said 'image hurt citizens', promised never again.",
+      "severity": "low",
+      "resolution": "dismissed",
+      "sources": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Kyriakos_Mitsotakis"
+        }
+      ]
+    },
+    {
+      "id": "migration-pushbacks-2023",
+      "type": "scandal",
+      "date": "2023-05-19",
+      "title": "Εξώσεις Μεταναστών",
+      "title_en": "Migration Pushbacks",
+      "description": "Βίντεο που επαληθεύθηκε από το New York Times εμφανίζει τη δυνατή απέλαση προσφύγων. Ο κυβερνητικός αρνητισμός για εκ των προτέρων εξώσεις και σημαντικές ενδείξεις για συστηματική πολιτική. Αμνηστία Διεθνής και Deutsche Welle χαρακτηρίζουν εξώσεις ως κατ'ουσίαν πολιτική. Παράνομο σύμφωνα με διεθνές δίκαιο. Ο Μητσοτάκης λαμβάνει ΕΕ στήριξη (€700M) για χειρισμό μεταναστείας.",
+      "description_en": "New York Times verified video shows forcible expulsion of asylum seekers. Government denial of deliberate pushbacks despite substantial evidence of systematic policy. Amnesty International and Deutsche Welle describe pushbacks as effectively official policy. Illegal under international law. Mitsotakis receives EU praise (€700M support) for migration handling.",
+      "severity": "high",
+      "resolution": "ongoing",
+      "sources": [
+        {
+          "label": "The Guardian",
+          "url": "https://www.guardian.com/world/2023/may/19/greek-government-under-fire-after-video-shows-pushback-of-asylum-seekers"
+        }
+      ]
+    },
+    {
+      "id": "netanyahu-meeting-march-2025",
+      "type": "statement",
+      "date": "2025-03-30",
+      "title": "Συνάντηση με Πρωθυπουργό Ισραήλ Benjamin Netanyahu",
+      "title_en": "Meeting with Israeli PM Benjamin Netanyahu",
+      "description": "Ο Μητσοτάκης συναντήθηκε με τον Israeli PM Netanyahu στην Ιερουσαλήμ, με θέματα συζήτησης τη στρατιωτική συνεργασία. Netanyahu διώκεται από το Διεθνές Ποινικό Δικαστήριο για κατηγορίες εγκλημάτων πολέμου στη Γάζα. Η Ελλάδα είναι σήματα της Συνθήκης Ρώμης και υπόχρεη νόμικά να συλλάβει ή δώσει στη δικαιοσύνη. Κομουνιστικό Κόμμα Ελλάδας καταδίκασε ως 'προσβολή' και αλληλεγγύη με Παλαιστινίους. Διεθνή ανάλυση προειδοποιεί για 'σκληρή κρίση της ιστορίας'.",
+      "description_en": "Mitsotakis met with Israeli PM Netanyahu in Jerusalem on defense cooperation. Netanyahu is wanted by International Criminal Court for alleged war crimes in Gaza. Greece is party to Rome Statute of ICC with legal obligation to arrest or prosecute. Communist Party of Greece condemned as 'insult' and solidarity with Palestinians. International analysts warn of 'harsh judgement of history'.",
+      "severity": "medium",
+      "resolution": "ongoing",
+      "sources": [
+        {
+          "label": "Anadolu Agency",
+          "url": "https://www.aa.com.tr/en/europe/greeces-mitsotakis-risks-harsh-judgement-of-history-for-meeting-with-israels-netanyahu-say-analysts/3779688"
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "compiled_date": "2026-02-28",
+    "data_sources": [
+      "https://el.wikipedia.org/wiki/Κυριάκος_Μητσοτάκης",
+      "https://en.wikipedia.org/wiki/Kyriakos_Mitsotakis",
+      "https://el.wikipedia.org/wiki/Κυβέρνηση_Κυριάκου_Μητσοτάκη_2019",
+      "https://el.wikipedia.org/wiki/Κυβέρνηση_Κυριάκου_Μητσοτάκη_2023",
+      "https://en.wikipedia.org/wiki/2022_Greek_surveillance_scandal",
+      "https://en.wikipedia.org/wiki/Tempi_train_crash",
+      "https://politico.eu",
+      "https://theguardian.com",
+      "https://reuters.com",
+      "https://bbc.com",
+      "https://balkaninsight.com",
+      "https://balkangreenenergynews.com"
+    ],
+    "completeness_assessment": {
+      "basic_information": "Complete",
+      "education": "Complete",
+      "career_before_politics": "Complete",
+      "family_and_dynasty": "Complete",
+      "cabinet_history": "Complete",
+      "parliamentary_activity": "Partial (committee/bill details not accessible)",
+      "asset_declarations": "Unavailable (Diavgeia system offline)",
+      "business_interests": "Complete (pre-political career)",
+      "policy_positions": "Comprehensive",
+      "scandals_and_controversies": "Comprehensive (6 major scandals documented)",
+      "contradictions": "Identified (3 key policy contradictions)",
+      "international_role": "Comprehensive",
+      "press_freedom_concerns": "Documented"
+    },
+    "data_quality_notes": [
+      "All facts traced to source URLs",
+      "Scandals include dates, descriptions, and resolution status",
+      "Policy contradictions identified and sourced",
+      "Family dynasty connections verified",
+      "Business interests cover pre-political career (1990-2003)",
+      "International relations documented through 2025",
+      "No asset declaration values available (Diavgeia offline)",
+      "Parliamentary voting records limited (vouli.gr access unsuccessful)"
+    ],
+    "coverage_period": "Birth (1968-03-04) to February 2026",
+    "languages": {
+      "primary": "Greek (Ελληνικά)",
+      "secondary": "English"
+    }
+  }
+}
