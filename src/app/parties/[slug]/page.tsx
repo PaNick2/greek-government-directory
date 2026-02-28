@@ -8,7 +8,7 @@ import type { PoliticalSpectrum, ParliamentaryStatus } from '@/generated/prisma/
 export const revalidate = 3600
 
 interface PageProps {
-  params: Promise<{ id: string }>
+  params: Promise<{ slug: string }>
 }
 
 // ── Badge helpers (same mapping as listing page) ───────────────────────────
@@ -62,13 +62,13 @@ function formatYear(d: Date | null | undefined): string | null {
 // ── Static params ──────────────────────────────────────────────────────────
 
 export async function generateStaticParams() {
-  const parties = await db.party.findMany({ select: { id: true } })
-  return parties.map((p) => ({ id: p.id }))
+  const parties = await db.party.findMany({ select: { slug: true } })
+  return parties.map((p) => ({ slug: p.slug }))
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { id } = await params
-  const party = await db.party.findUnique({ where: { id }, select: { name: true, bio: true } })
+  const { slug } = await params
+  const party = await db.party.findUnique({ where: { slug }, select: { name: true, bio: true } })
   return {
     title: party ? `${party.name} | ΕΚΑ` : 'Κόμμα | ΕΚΑ',
     description: party?.bio?.slice(0, 160) ?? undefined,
@@ -78,10 +78,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 // ── Page ───────────────────────────────────────────────────────────────────
 
 export default async function PartyDetailPage({ params }: PageProps) {
-  const { id } = await params
+  const { slug } = await params
 
   const party = await db.party.findUnique({
-    where: { id },
+    where: { slug },
     include: {
       electionResults: {
         orderBy: { election_date: 'desc' },

@@ -51,6 +51,7 @@ export default async function PartiesPage() {
     orderBy: { name: 'asc' },
     select: {
       id: true,
+      slug: true,
       name: true,
       name_en: true,
       abbreviation: true,
@@ -78,7 +79,7 @@ export default async function PartiesPage() {
           {parties.map((party) => (
             <Link
               key={party.id}
-              href={`/parties/${party.id}`}
+              href={`/parties/${party.slug}`}
               className="group flex items-start gap-4 rounded-xl border border-slate-200 bg-white p-5 hover:border-[#003087] hover:shadow-sm transition"
             >
               {party.color && (
