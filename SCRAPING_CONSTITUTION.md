@@ -494,3 +494,147 @@ pending     → Η αίτηση εκκρεμεί
 | `constitutional_references[].source` | `source` | `ConstitutionalReference` (String?) |
 
 **Import script path:** `scripts/import.ts` — handles the `constitutional_references` array automatically via nested upsert.
+
+---
+
+## 11. Δομή δεδομένων κόμματος (Party data)
+
+Κάθε φορά που συναντάς ένα κόμμα που **δεν έχει ήδη αρχείο** στο `data/raw/parties/`, δημιούργησε ένα νέο JSON αρχείο γι' αυτό. Χρησιμοποίησε ως όνομα αρχείου το slug του κόμματος (π.χ. `nd.json`, `pasok.json`).
+
+> **Κανόνας:** Το slug είναι το `id` του κόμματος όπως εμφανίζεται στο minister JSON (`party.current`). Αν δεν υπάρχει ακόμα αρχείο, δημιούργησέ το. Αν υπάρχει, μην το αντικαταστήσεις — άφησέ το ως έχει.
+
+---
+
+### 11.1 Πού να το αποθηκεύσεις
+
+```
+data/raw/parties/{slug}.json
+```
+
+Παράδειγμα: `data/raw/parties/nd.json`, `data/raw/parties/pasok.json`
+
+---
+
+### 11.2 Enum τιμές
+
+**`political_spectrum`** — θέση στο πολιτικό φάσμα:
+```
+far_left             → Ακροαριστερά
+left                 → Αριστερά
+centre_left          → Κεντροαριστερά
+centre               → Κέντρο
+centre_right         → Κεντροδεξιά
+right                → Δεξιά
+far_right            → Ακροδεξιά
+```
+
+**`parliamentary_status`** — τρέχουσα κοινοβουλευτική θέση:
+```
+governing                  → Κυβέρνηση (αυτοδύναμη ή πρωταρχικός εταίρος)
+opposition                 → Αντιπολίτευση
+junior_coalition_partner   → Μικρός κυβερνητικός εταίρος
+extra_parliamentary        → Εξωκοινοβουλευτικό
+dissolved                  → Διαλύθηκε
+```
+
+---
+
+### 11.3 Πλήρης δομή party JSON
+
+```json
+{
+  "id": "slug-κόμματος",
+  "name": "Πλήρες όνομα κόμματος στα ελληνικά",
+  "name_en": "Full party name in English",
+  "abbreviation": "Συντομογραφία ελληνικά (π.χ. ΝΔ)",
+  "abbreviation_en": "Abbreviation in English (e.g. ND)",
+  "color": "#RRGGBB",
+  "founded": "YYYY-MM-DD",
+  "dissolved": "YYYY-MM-DD ή null αν εξακολουθεί να υπάρχει",
+  "political_spectrum": "centre_right",
+  "parliamentary_status": "governing",
+  "ideology": "Κεντροδεξιά, Φιλελευθερισμός, Συντηρητισμός",
+  "ideology_en": "Centre-right, Liberalism, Conservatism",
+  "bio": "Σύντομη βιογραφία του κόμματος στα ελληνικά. 3-8 προτάσεις που καλύπτουν ίδρυση, ιστορία, βασικές θέσεις.",
+  "bio_en": "Short party biography in English. 3-8 sentences covering founding, history, key positions.",
+
+  "election_results": [
+    {
+      "election_date": "YYYY-MM-DD",
+      "vote_percentage": 40.56,
+      "seats": 158,
+      "total_seats": 300,
+      "formed_government": true,
+      "notes": "Προαιρετικές σημειώσεις, π.χ. είδος εκλογής, ιδιαιτερότητες",
+      "source": "URL πηγής ή null"
+    }
+  ],
+
+  "leaders": [
+    {
+      "name": "Ονοματεπώνυμο αρχηγού",
+      "minister_id": "slug-υπουργου-αν-υπαρχει-στη-βαση ή null",
+      "from": "YYYY-MM-DD",
+      "to": "YYYY-MM-DD ή null αν είναι τρέχων αρχηγός",
+      "notes": "Προαιρετικές σημειώσεις",
+      "source": "URL πηγής ή null"
+    }
+  ]
+}
+```
+
+---
+
+### 11.4 Τι να ψάχνεις για κάθε κόμμα
+
+Ψάξε ευρέως χρησιμοποιώντας παρόμοια στρατηγική με τα events. Βασικά ερωτήματα:
+
+```
+[όνομα κόμματος] ίδρυση ιστορία
+[όνομα κόμματος] ιδεολογία πολιτικό φάσμα
+[όνομα κόμματος] εκλογικά αποτελέσματα [έτος]
+[όνομα κόμματος] αρχηγοί ηγεσία timeline
+[party name in English] Wikipedia
+```
+
+**Τύποι πηγών:**
+- Επίσημη ιστοσελίδα του κόμματος (για ίδρυση, ιδεολογία, τρέχουσα ηγεσία)
+- Εθνική Εκλογική Αρχή / Υπουργείο Εσωτερικών (για εκλογικά αποτελέσματα)
+- Εγκυκλοπαιδικές πηγές (για ιστορικά στοιχεία)
+- Αξιόπιστες ειδησεογραφικές πηγές (για αλλαγές ηγεσίας, αποτελέσματα)
+
+---
+
+### 11.5 Κανόνες ποιότητας
+
+- **`political_spectrum`**: βασίσου σε τρέχουσα ιδεολογική τοποθέτηση, όχι σε ιστορική — αν το κόμμα άλλαξε κατεύθυνση, κατέγραψε την τρέχουσα
+- **`parliamentary_status`**: η τρέχουσα θέση στη στιγμή της καταχώρησης
+- **`election_results`**: συμπληρώνεται από νεότερα προς παλαιότερα, όσα βρεις με αξιόπιστη πηγή
+- **`leaders`**: διαδοχική σειρά χρονολογικά · το `minister_id` συμπληρώνεται μόνο αν ο αρχηγός υπάρχει ήδη ως minister στη βάση (έλεγξε το `id` στο αντίστοιχο minister JSON)
+- **`bio`**: ουδέτερο, περιγραφικό κείμενο — όχι πολιτικά επιχειρήματα
+- **Αν δεν βρίσκεις κάποιο πεδίο**, άφησέ το `null` — μην εφευρίσκεις
+
+---
+
+### 11.6 Αντιστοίχηση JSON → Database (Party schema)
+
+| JSON field | Database column | Τύπος |
+|---|---|---|
+| `id` | `slug` | `String` (unique) |
+| `name` | `name` | `String` |
+| `name_en` | `name_en` | `String?` |
+| `abbreviation` | `abbreviation` | `String?` |
+| `abbreviation_en` | `abbreviation_en` | `String?` |
+| `color` | `color` | `String?` |
+| `founded` | `founded` | `DateTime? @db.Date` |
+| `dissolved` | `dissolved` | `DateTime? @db.Date` |
+| `political_spectrum` | `political_spectrum` | `PoliticalSpectrum?` enum |
+| `parliamentary_status` | `parliamentary_status` | `ParliamentaryStatus?` enum |
+| `ideology` | `ideology` | `String?` |
+| `ideology_en` | `ideology_en` | `String?` |
+| `bio` | `bio` | `String? @db.Text` |
+| `bio_en` | `bio_en` | `String? @db.Text` |
+| `election_results[]` | `ElectionResult` model | separate table, FK `party_id` |
+| `leaders[]` | `PartyLeader` model | separate table, FK `party_id` |
+
+> **Σημείωση:** Το Party schema επεκτείνεται στο Milestone 7. Τα αρχεία `data/raw/parties/*.json` θα εισαχθούν στη βάση μέσω `npm run import` αφού εφαρμοστεί η migration.
